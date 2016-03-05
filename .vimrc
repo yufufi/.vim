@@ -2,7 +2,27 @@ filetype off
 
 set nocp
 
-set dir=$TEMP
+" Backups {{{
+" set updatecount=0
+set noswapfile
+if has("gui_macvim")
+    set backupdir=/Users/yufufi/scratch//
+    set backupskip=/Users/yufufi/scratch/*
+    set directory=./.scratch//,/Users/yufufi/scratch//
+    set undodir=./.scratch//,/Users/yufufi/scratch//
+else
+    set backupdir=/Users/yufufi/scratch
+    set backupskip=/Users/yufufi/scratch/*
+    set directory=./.scratch//,/Users/yufufi/scratch//
+    set undodir=./.scratch//,/Users/yufufi/scratch//
+endif
+set writebackup
+set backup
+" Automatically create .backup directory, writable by the group.
+if filewritable(".") && ! filewritable(".scratch")
+  silent execute '!umask 002; mkdir .scratch'
+endif
+" }}}
 
 call pathogen#infect()
 
@@ -35,7 +55,7 @@ set wildmode=list:longest,full "enables a menu at the bottom of vim
 set lazyredraw
 set showmatch
 if has("gui_macvim")
-    set guifont="Source Code Pro Medium":h13
+    set guifont="Source Code Pro Medium":h14444
 else
     set guifont=Consolas:h11
 endif
@@ -103,21 +123,6 @@ nnoremap <leader>u :GundoToggle<CR>
 set scrolloff=3 "always have 3 lines above and below cursor visible (while scrolling searching etc)
 " }}}
 
-" Backups {{{
-set backup
-if has("gui_macvim")
-    set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-    set backupskip=/tmp/*,/private/tmp/*
-    set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-else
-    let tempDir=~/.tmp/
-    set backupdir=~/.tmp/
-    set backupskip=~/.tmp/*
-    set directory=~/.tmp/
-endif
-set writebackup
-" }}}
-
 " Buffer management {{{
 nmap <C-S-tab> :bprevious<CR>
 nmap <C-tab> :bnext<CR>
@@ -172,9 +177,15 @@ au FileType cs set foldmarker={,}
 au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
 " }}}
 
+" Python Specific {{{
+autocmd FileType python setlocal omnifunc=jedi#completions
+autocmd BufEnter * :set noswapfile
+" }}}
+
 " Plugin Configs {{{
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
+" let g:EclimCompletionMethod = 'omnifunc'
 
 " vimwiki-tasks
 let g:vimwiki_tasks_annotate_origin = 1
@@ -201,6 +212,8 @@ let g:vimwiki_list = [{'path': '~/Dropbox/td/work/', 'syntax': 'markdown'}]
 
 "plugin settings
 let g:miniBufExplCloseOnSelect = 1
+let g:jedi#completions_command = "<A-Space>"
+
 
 " }}}
 
@@ -243,7 +256,6 @@ nmap <Leader>pp :PandocPreview<CR>
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
-let g:EclimCompletionMethod = 'omnifunc'
 " }}}
 
 hi really_unique_name guifg=#D33682

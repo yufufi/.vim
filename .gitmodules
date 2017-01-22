@@ -43,9 +43,6 @@
 [submodule "bundle/vim-easymotion"]
 	path = bundle/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
-[submodule "bundle/vim-fugitive"]
-	path = bundle/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive.git
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
@@ -58,3 +55,24 @@
 [submodule "bundle/PyInteractive"]
 	path = bundle/PyInteractive
 	url = https://github.com/vim-scripts/PyInteractive.git
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "bundle/calendar"]
+	path = bundle/calendar
+	url = https://github.com/itchyny/calendar.vim
+[submodule "bundle/taskpaper.vim"]
+	path = bundle/taskpaper.vim
+	url = https://github.com/davidoc/taskpaper.vim.git
+[submodule "bundle/vim-plug"]
+	path = bundle/vim-plug
+	url = https://github.com/junegunn/vim-plug.git
+[submodule "autoload/plug.vim"]
+	path = autoload/plug.vim
+	url = https://github.com/junegunn/vim-plug.git
+[submodule "bundle/swift.vim"]
+	path = bundle/swift.vim
+	url = https://github.com/keith/swift.vim
+[submodule "bundle/vimwiki.git"]
+	path = bundle/vimwiki.git
+	url = https://github.com/vimwiki/vimwiki.git

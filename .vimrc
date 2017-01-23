@@ -1,26 +1,28 @@
 filetype off
+set shell=bash
 
 set nocp
 
+" set verbose=20
 " Backups {{{
 " set updatecount=0
 set noswapfile
 if has("gui_macvim")
-    set backupdir=/Users/yufufi/scratch//
-    set backupskip=/Users/yufufi/scratch/*
-    set directory=./.scratch//,/Users/yufufi/scratch//
-    set undodir=./.scratch//,/Users/yufufi/scratch//
+set backupdir=/Users/yufufi/.scratch//
+set backupskip=/Users/yufufi/.scratch/*
+set directory=./.scratch//,/Users/yufufi/scratch//
+set undodir=./.scratch//,/Users/yufufi/scratch//
 else
-    set backupdir=/Users/yufufi/scratch
-    set backupskip=/Users/yufufi/scratch/*
-    set directory=./.scratch//,/Users/yufufi/scratch//
-    set undodir=./.scratch//,/Users/yufufi/scratch//
+set backupdir=/Users/yufufi/.scratch
+set backupskip=/Users/yufufi/.scratch/*
+set directory=./.scratch//,/Users/yufufi/.scratch//
+set undodir=./.scratch//,/Users/yufufi/.scratch//
 endif
 set writebackup
 set backup
 " Automatically create .backup directory, writable by the group.
 if filewritable(".") && ! filewritable(".scratch")
-  silent execute '!umask 002; mkdir .scratch'
+silent execute '!umask 002; mkdir .scratch'
 endif
 " }}}
 
@@ -29,10 +31,10 @@ call pathogen#infect()
 " Colors {{{
 colorscheme bayQua
 if(has('gui_running'))
-    colorscheme solarized
-    set background=dark
+colorscheme monokai
+set background=dark
 else
-    colorscheme mustang 
+colorscheme mustang 
 endif
 set background=dark
 syntax enable
@@ -55,9 +57,10 @@ set wildmode=list:longest,full "enables a menu at the bottom of vim
 set lazyredraw
 set showmatch
 if has("gui_macvim")
-    set guifont="Source Code Pro Medium":h14444
+set anti enc=utf-8
+set guifont=Source\ Code\ Pro\ Medium:h14
 else
-    set guifont=Consolas:h11
+set guifont=Consolas:h13
 endif
 :auto BufEnter * let &titlestring = expand($_BUILDBRANCH) ." " . expand("%:p")
 " }}}
@@ -110,15 +113,9 @@ nnoremap k gk
 " highlight last inserted text
 nnoremap gV `[v`]gV `[v`]
 
-" move to beginning/end of line
-nnoremap B ^
-nnoremap E $
-
-" $/^ doesn't do anything
-nnoremap $ <nop>
-nnoremap ^ <nop>
-
 nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>ft :CommandT<CR>
+nnoremap <leader>bt :CommandTBuffer<CR>
 
 set scrolloff=3 "always have 3 lines above and below cursor visible (while scrolling searching etc)
 " }}}
@@ -130,8 +127,8 @@ map <C-S-tab> :bprevious<CR>
 map <C-tab> :bnext<CR>
 imap <C-S-tab> <Esc>:bprevious<CR>i
 imap <C-tab> <Esc>:bnext<CR>i
-nmap <C-t> :enew<CR>
-imap <C-t> <Esc>:bnew<CR>
+" nmap <C-t> :enew<CR>
+" imap <C-t> <Esc>:bnew<CR>
 " }}}
 
 " Custom Functions {{{
@@ -145,6 +142,29 @@ function! ToggleNumber()
     endif
 endfunc
 " }}}
+
+function! VimwikiLinkHandler(link)
+    " Use Vim to open external files with the 'vfile:' scheme.  E.g.:
+    "
+    "   1) [[vfile:~/Code/PythonProject/abc123.py]]
+    "   2) [[vfile:./|Wiki Home]]
+    echomsg 'Trying now'
+    let link = a:link
+    if link =~# '^vfile:'
+      let link = link[1:]
+    else
+      return 0
+    endif
+    let link_infos = vimwiki#base#resolve_link(link)
+    if link_infos.filename == ''
+      echomsg 'Vimwiki Error: Unable to resolve link!'
+      return 0
+    else
+      echomsg link_infos.filename
+      exe 'tabnew ' . fnameescape(link_infos.filename)
+      return 1
+    endif
+endfunction
 
 " pandoc, markdown
 command! -nargs=* Pandoc
@@ -190,6 +210,8 @@ let g:airline#extensions#tabline#enabled = 1
 " vimwiki-tasks
 let g:vimwiki_tasks_annotate_origin = 1
 let g:vimwiki_tasks_tags_nodue = '+nodue'
+let g:vimwiki_global_ext = 0
+let g:vimwiki_list = [{'path': '~/Dropbox/notes/wiki', 'syntax': 'markdown', 'ext' : '.md'}]
 
 " -- configs --
 let OmniCpp_MayCompleteDot = 1 " autocomplete with .
@@ -208,13 +230,30 @@ let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:
 " CtrlP
 let g:ctrlp_max_files = 0
 
-let g:vimwiki_list = [{'path': '~/Dropbox/td/work/', 'syntax': 'markdown'}]
-
 "plugin settings
 let g:miniBufExplCloseOnSelect = 1
 let g:jedi#completions_command = "<A-Space>"
 
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+au BufRead,BufNewFile *.wiki set filetype=vimwiki
+" autocmd FileType vimwiki map d :VimwikiMakeDiaryNote
+function! ToggleCalendar()
+  execute ":Calendar"
+  if exists("g:calendar_open")
+    if g:calendar_open == 1
+      execute "q"
+      unlet g:calendar_open
+    else
+      g:calendar_open = 1
+    end
+  else
+    let g:calendar_open = 1
+  end
+endfunction
 
+
+autocmd FileType calendar nmap <buffer> <CR> :<C-u>call vimwiki#diary#calendar_action(b:calendar.day().get_day(), b:calendar.day().get_month(), b:calendar.day().get_year(), b:calendar.day().week(), "V")<CR>
 " }}}
 
 " File Handling {{{
@@ -229,16 +268,9 @@ nnoremap <leader>tl :TlistToggle<CR>
 autocmd FileType javascript map <F8> :TagbarToggle<CR>
 autocmd FileType javascript noremap <buffer> <F5> :call JsBeautify()<cr>
 
-nnoremap <leader>fb :FufBuffer<CR>
-nnoremap <leader>ff :FufFile<CR>
-nnoremap <leader>fr :FufCoverageFile<CR>
-nnoremap <leader>fd :FufDir<CR>
-nnoremap <leader>fbd :FufBookmarkDir<CR>
-nnoremap <leader>fbad :FufBookmarkDirAdd<CR>
 " nerd tree
 nmap <C-a> :NERDTreeFind<CR>
 nmap <C-e> :NERDTreeToggle<CR>
-noremap <silent><F11> :cal VimCommanderToggle()<CR>
 vnoremap . :norm.<CR>
 
 let vim_markdown_preview_hotkey='<C-m>'
@@ -246,9 +278,6 @@ let vim_markdown_preview_toggle=2
 let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_temp_file=1
 let vim_markdown_preview_github=0
-
-nmap <Leader>pc :Pandoc "%"<CR>
-nmap <Leader>pp :PandocPreview<CR>
 
 " }}}
 
@@ -283,9 +312,17 @@ nnoremap ; :
 
 
 " add current directory's generated tags file to available tags
-autocmd FileType cs set tags+=d:\bliss\dataplatform\ldpv2\csharptag
-set tags+=.\tags
-set tags+=d:\stl\tags
+" autocmd FileType cs set tags+=d:\bliss\dataplatform\ldpv2\csharptag
+set tags =tags,.tags
+" Filetype specific tag files (This is used for global IDE tags)
+autocmd FileType c              set tags=.tags_cpp,$HOME/.vim/tags/cpp
+autocmd FileType cpp            set tags=.tags_cpp,$HOME/.vim/tags/cpp
+autocmd FileType css            set tags=.tags_css,$HOME/.vim/tags/css
+autocmd FileType java           set tags=.tags_java,$HOME/.vim/tags/java
+autocmd FileType javascript     set tags=.tags_js,$HOME/.vim/tags/js
+autocmd FileType html           set tags=.tags_html,$HOME/.vim/tags/html
+autocmd FileType php            set tags=.tags_php,$HOME/.vim/tags/php
+autocmd FileType sh             set tags=.tags_sh,$HOME/.vim/tags/sh
 
 set textwidth=140
 set shiftwidth=4

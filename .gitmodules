@@ -76,3 +76,12 @@
 [submodule "bundle/bufexplorer.git"]
 	path = bundle/bufexplorer.git
 	url = https://github.com/jlanzarotta/bufexplorer.git
+[submodule "bundle/VOoM.git"]
+	path = bundle/VOoM.git
+	url = https://github.com/vim-voom/VOoM.git
+[submodule "bundle/vim-markdown.git"]
+	path = bundle/vim-markdown.git
+	url = https://github.com/gabrielelana/vim-markdown.git
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git

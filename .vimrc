@@ -29,13 +29,15 @@ endif
 call pathogen#infect()
 
 " Colors {{{
-colorscheme bayQua
-if(has('gui_running'))
-colorscheme monokai
-set background=dark
-else
-colorscheme mustang 
-endif
+"colorscheme bayQua
+" colorscheme mustang 
+colorscheme molokai
+"if(has('gui_running'))
+"colorscheme monokai
+"set background=dark
+"else
+"colorscheme mustang 
+"endif
 set background=dark
 syntax enable
 
@@ -114,8 +116,9 @@ nnoremap k gk
 nnoremap gV `[v`]gV `[v`]
 
 nnoremap <leader>u :GundoToggle<CR>
-nnoremap <leader>ft :CommandT<CR>
-nnoremap <leader>bt :CommandTBuffer<CR>
+nnoremap <leader>ff :CommandT<CR>
+nnoremap <leader>fb :CommandTBuffer<CR>
+nnoremap <leader>om :Voom markdown<CR>
 
 set scrolloff=3 "always have 3 lines above and below cursor visible (while scrolling searching etc)
 " }}}
@@ -141,14 +144,12 @@ function! ToggleNumber()
         set relativenumber
     endif
 endfunc
-" }}}
 
 function! VimwikiLinkHandler(link)
     " Use Vim to open external files with the 'vfile:' scheme.  E.g.:
     "
     "   1) [[vfile:~/Code/PythonProject/abc123.py]]
     "   2) [[vfile:./|Wiki Home]]
-    echomsg 'Trying now'
     let link = a:link
     if link =~# '^vfile:'
       let link = link[1:]
@@ -160,8 +161,7 @@ function! VimwikiLinkHandler(link)
       echomsg 'Vimwiki Error: Unable to resolve link!'
       return 0
     else
-      echomsg link_infos.filename
-      exe 'tabnew ' . fnameescape(link_infos.filename)
+      exe 'e ' . fnameescape(link_infos.filename)
       return 1
     endif
 endfunction
@@ -186,6 +186,7 @@ au BufNewFile,BufRead *.spark :setf xml
 au BufNewFile,BufRead *.ts :setf typescript
 au BufNewFile,BufRead *.json set filetype=json 
 au BufNewFile,BufRead *.wiki set filetype=markdown 
+au BufNewFile,BufRead *.plist set filetype=xml 
 " }}}
 
 " C# specific {{{
@@ -273,12 +274,6 @@ nmap <C-a> :NERDTreeFind<CR>
 nmap <C-e> :NERDTreeToggle<CR>
 vnoremap . :norm.<CR>
 
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_toggle=2
-let vim_markdown_preview_browser='Google Chrome'
-let vim_markdown_preview_temp_file=1
-let vim_markdown_preview_github=0
-
 " }}}
 
 " Coding Support {{{
@@ -341,7 +336,7 @@ set list! " showinvisible characters
 set listchars=trail:·,tab:>-,eol:$,extends:>,precedes:<
 set list! " showinvisible characters
 "highlight NonText guifg=#4a4a59
-highlight NonText guifg=#FFFFFF
+"highlight NonText guifg=#FFFFFF
 
 "highlight NonText guifg=#4a4a59
 "highlight SpecialKey guifg=#4a4a59
@@ -397,6 +392,8 @@ function! LoadSession()
     echo "No session loaded."
   endif
 endfunction
+
+" }}}
 "au VimEnter * nested :call LoadSession()
 "au VimLeave * :call MakeSession()
 

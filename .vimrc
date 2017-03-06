@@ -217,7 +217,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:vimwiki_tasks_annotate_origin = 1
 let g:vimwiki_tasks_tags_nodue = '+nodue'
 let g:vimwiki_global_ext = 0
-let g:vimwiki_list = [{'path': '~/Dropbox/notes/wiki', 'syntax': 'markdown', 'ext' : '.md'}]
+let g:vimwiki_list = [{'path': '~/Documents/wiki', 'syntax': 'markdown', 'ext' : '.md'}]
 
 " -- configs --
 let OmniCpp_MayCompleteDot = 1 " autocomplete with .

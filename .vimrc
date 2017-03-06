@@ -8,15 +8,20 @@ set nocp
 " set updatecount=0
 set noswapfile
 if has("gui_macvim")
-set backupdir=/Users/yufufi/.scratch//
-set backupskip=/Users/yufufi/.scratch/*
-set directory=./.scratch//,/Users/yufufi/scratch//
-set undodir=./.scratch//,/Users/yufufi/scratch//
+    set backupdir=/Users/yufufi/.scratch//
+    set backupskip=/Users/yufufi/.scratch/*
+    set directory=./.scratch//,/Users/yufufi/scratch//
+    set undodir=./.scratch//,/Users/yufufi/scratch//
+elseif has("win32")
+    set backupdir=C:\\Users\\Furkan\\.scratch
+    set backupskip=C:\\Users\\Furkan\\.scratch\\*
+    set directory=.\\.scratch\\,C:\\Users\\Furkan\\.scratch\\
+    set undodir=./.scratch//,/Users/yufufi/.scratch//
 else
-set backupdir=/Users/yufufi/.scratch
-set backupskip=/Users/yufufi/.scratch/*
-set directory=./.scratch//,/Users/yufufi/.scratch//
-set undodir=./.scratch//,/Users/yufufi/.scratch//
+    set backupdir=/Users/yufufi/.scratch
+    set backupskip=/Users/yufufi/.scratch/*
+    set directory=./.scratch//,/Users/yufufi/.scratch//
+    set undodir=./.scratch//,/Users/yufufi/.scratch//
 endif
 set writebackup
 set backup
@@ -319,7 +324,7 @@ autocmd FileType html           set tags=.tags_html,$HOME/.vim/tags/html
 autocmd FileType php            set tags=.tags_php,$HOME/.vim/tags/php
 autocmd FileType sh             set tags=.tags_sh,$HOME/.vim/tags/sh
 
-set textwidth=140
+" set textwidth=140
 set shiftwidth=4
 set autoindent
 set bs=2 " indent,eol,start

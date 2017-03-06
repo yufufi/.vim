@@ -49,9 +49,6 @@
 [submodule "bundle/jedi-vim"]
 	path = bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
-[submodule "bundle/vim-taskwarrior"]
-	path = bundle/vim-taskwarrior
-	url = https://github.com/blindFS/vim-taskwarrior.git
 [submodule "bundle/PyInteractive"]
 	path = bundle/PyInteractive
 	url = https://github.com/vim-scripts/PyInteractive.git

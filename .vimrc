@@ -1,5 +1,8 @@
 filetype off
-set shell=bash
+if has("win32")
+elseif
+    set shell=bash
+endif
 
 set nocp
 

@@ -70,7 +70,7 @@ if has("gui_macvim")
 set anti enc=utf-8
 set guifont=Source\ Code\ Pro\ Medium:h14
 else
-set guifont=Consolas:h13
+set guifont=Consolas:h11
 endif
 :auto BufEnter * let &titlestring = expand($_BUILDBRANCH) ." " . expand("%:p")
 " }}}
@@ -407,4 +407,14 @@ endfunction
 
 " vim:foldmethod=marker:foldlevel=0
 
+" Syntastic config {{{
+" toggle between number and relativenumber
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" }}}

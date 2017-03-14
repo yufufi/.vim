@@ -10,9 +10,6 @@
 [submodule "gundo.vim"]
 	path = gundo.vim
 	url = https://github.com/sjl/gundo.vim.git
-[submodule "bundle/jshint"]
-	path = bundle/jshint
-	url = https://github.com/wookiehangover/jshint.vim.git
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git

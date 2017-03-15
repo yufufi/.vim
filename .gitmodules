@@ -82,3 +82,9 @@
 [submodule "bundle/vim-colorschemes"]
 	path = bundle/vim-colorschemes
 	url = https://github.com/flazz/vim-colorschemes.git
+[submodule "bundle/vim-dispatch"]
+	path = bundle/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch.git
+[submodule "bundle/command-t"]
+	path = bundle/command-t
+	url = https://github.com/wincent/command-t.git

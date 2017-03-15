@@ -1,6 +1,5 @@
 filetype off
-if has("win32")
-elseif
+if ! has("win32")
     set shell=bash
 endif
 

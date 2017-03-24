@@ -20,10 +20,10 @@ elseif has("win32")
     set directory=.\\.scratch\\,C:\\Users\\Furkan\\.scratch\\
     set undodir=./.scratch//,/Users/yufufi/.scratch//
 else
-    set backupdir=/Users/yufufi/.scratch
-    set backupskip=/Users/yufufi/.scratch/*
-    set directory=./.scratch//,/Users/yufufi/.scratch//
-    set undodir=./.scratch//,/Users/yufufi/.scratch//
+    set backupdir=~/.scratch
+    set backupskip=~/.scratch/*
+    set directory=./.scratch//,~/.scratch//
+    set undodir=./.scratch//,~/.scratch//
 endif
 set writebackup
 set backup
@@ -137,6 +137,9 @@ map <C-S-tab> :bprevious<CR>
 map <C-tab> :bnext<CR>
 imap <C-S-tab> <Esc>:bprevious<CR>i
 imap <C-tab> <Esc>:bnext<CR>i
+nmap <leader><tab> :bnext<CR>
+nmap <leader><tab> :bnext<CR>
+
 " nmap <C-t> :enew<CR>
 " imap <C-t> <Esc>:bnew<CR>
 " }}}

@@ -10,6 +10,7 @@ set nocp
 " set updatecount=0
 set noswapfile
 if has("gui_macvim")
+    set rtp+=/usr/local/opt/fzf
     set backupdir=/Users/yufufi/.scratch//
     set backupskip=/Users/yufufi/.scratch/*
     set directory=./.scratch//,/Users/yufufi/scratch//
@@ -20,6 +21,7 @@ elseif has("win32")
     set directory=.\\.scratch\\,C:\\Users\\Furkan\\.scratch\\
     set undodir=./.scratch//,/Users/yufufi/.scratch//
 else
+    set rtp+=/usr/local/opt/fzf
     set backupdir=/Users/yufufi/.scratch
     set backupskip=/Users/yufufi/.scratch/*
     set directory=./.scratch//,/Users/yufufi/.scratch//

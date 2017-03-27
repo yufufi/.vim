@@ -24,6 +24,7 @@ else
     set backupskip=~/.scratch/*
     set directory=./.scratch//,~/.scratch//
     set undodir=./.scratch//,~/.scratch//
+    set rtp+=~/.fzf
 endif
 set writebackup
 set backup

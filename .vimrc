@@ -5,6 +5,9 @@ endif
 
 set nocp
 
+" no hitory tracking
+let g:netrw_dirhistmax = 0
+
 " set verbose=20
 " Backups {{{
 " set updatecount=0

@@ -74,6 +74,7 @@ set guifont=Source\ Code\ Pro\ Medium:h14
 else
 set guifont=Consolas:h11
 set guifont=Source\ Code\ Pro\ Medium:h14
+set guifont=Source\ Code\ Pro\ Semi-Bold\ 10 "gtk
 endif
 :auto BufEnter * let &titlestring = expand($_BUILDBRANCH) ." " . expand("%:p")
 " }}}

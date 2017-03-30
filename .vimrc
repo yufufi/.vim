@@ -73,6 +73,7 @@ set anti enc=utf-8
 set guifont=Source\ Code\ Pro\ Medium:h14
 else
 set guifont=Consolas:h11
+set guifont=Source\ Code\ Pro\ Medium:h14
 endif
 :auto BufEnter * let &titlestring = expand($_BUILDBRANCH) ." " . expand("%:p")
 " }}}
@@ -372,8 +373,7 @@ noremap <C-F5> :e $MYVIMRC<CR>
 " CPP specific
 autocmd FileType cpp map <C-F12> :!ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q .<CR><CR>
 
-syntax include @Javascript syntax/javascript.vim
-syntax region javascriptCode matchgroup=Snip start="<rms:Javascript" end="</rms:Javascript" contains=@Javascript
+"syntax include @Javascript syntax/javascript.vim
 hi link Snip SpecialComment
 
 augroup json_autocmd 

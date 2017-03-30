@@ -27,3 +27,5 @@ https://github.com/Chiel92/vim-autoformat.git
 https://github.com/easymotion/vim-easymotion.git
 
 https://github.com/tpope/vim-fugitive.git
+
+Run npm install under tern

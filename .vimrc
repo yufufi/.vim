@@ -199,7 +199,7 @@ set clipboard=unnamed
 " FileType Mappings {{{
 au BufNewFile,BufRead *.script setf scope
 au BufNewFile,BufRead *.spark :setf xml
-au BufNewFile,BufRead *.ts :setf typescript
+" au BufNewFile,BufRead *.ts :setf typescript
 au BufNewFile,BufRead *.json set filetype=json 
 au BufNewFile,BufRead *.wiki set filetype=markdown 
 au BufNewFile,BufRead *.plist set filetype=xml 

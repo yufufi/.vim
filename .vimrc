@@ -201,10 +201,11 @@ set clipboard=unnamed
 " FileType Mappings {{{
 au BufNewFile,BufRead *.script setf scope
 au BufNewFile,BufRead *.spark :setf xml
-" au BufNewFile,BufRead *.ts :setf typescript
+au BufNewFile,BufRead *.ts :setf typescript
 au BufNewFile,BufRead *.json set filetype=json 
 au BufNewFile,BufRead *.wiki set filetype=markdown 
 au BufNewFile,BufRead *.plist set filetype=xml 
+au BufNewFile,BufRead *.md set filetype=markdown 
 " }}}
 
 " C# specific {{{
@@ -245,6 +246,9 @@ let g:Tlist_Use_Right_Window=1
 let g:Tlist_WinWidth=50
 let tlist_vimwiki_settings = "wiki;h:Headers"
 let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:function'
+
+" syntastic
+let g:syntastic_typescript_checkers = ['tsuquyomi', 'tsc']
 
 " CtrlP
 let g:ctrlp_max_files = 0

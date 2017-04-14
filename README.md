@@ -29,3 +29,6 @@ https://github.com/easymotion/vim-easymotion.git
 https://github.com/tpope/vim-fugitive.git
 
 Run npm install under tern
+
+https://github.com/Shougo/vimproc.vim
+requires make under the folder or just run VimProcInstall

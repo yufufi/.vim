@@ -97,7 +97,7 @@ nnoremap <leader><space> :noh<cr>
 "disable vim specifc regex
 nnoremap / /\v
 vnoremap / /\v
-nnoremap <tab> %
+"nnoremap <tab> %
 
 :" The leader defaults to backslash, so (by default) this
 :" maps \* and \g* (see :help Leader).
@@ -133,6 +133,7 @@ nnoremap gV `[v`]gV `[v`]
 nnoremap <leader>u :GundoToggle<CR>
 nnoremap <leader>ff :CommandT<CR>
 nnoremap <leader>fb :CommandTBuffer<CR>
+nnoremap <leader>be :BufExplorerHorizontalSplit<CR>
 nnoremap <leader>om :Voom markdown<CR>
 
 set scrolloff=3 "always have 3 lines above and below cursor visible (while scrolling searching etc)

@@ -130,8 +130,11 @@ nnoremap k gk
 " highlight last inserted text
 nnoremap gV `[v`]gV `[v`]
 
+nnoremap <leader>fr :CommandT<cr>
+
 nnoremap <leader>u :GundoToggle<CR>
 nnoremap <leader>ff :CommandT<CR>
+nnoremap <leader>fr :CommandTMRU<CR>
 nnoremap <leader>fb :CommandTBuffer<CR>
 nnoremap <leader>be :BufExplorerHorizontalSplit<CR>
 nnoremap <leader>om :Voom markdown<CR>
@@ -423,6 +426,8 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1

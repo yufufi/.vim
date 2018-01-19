@@ -4,6 +4,8 @@ if ! has("win32")
 endif
 
 set nocp
+call pathogen#infect()
+
 
 " no hitory tracking
 let g:netrw_dirhistmax = 0
@@ -19,9 +21,9 @@ if has("gui_macvim")
     set directory=./.scratch//,/Users/yufufi/scratch//
     set undodir=./.scratch//,/Users/yufufi/scratch//
 elseif has("win32")
-    set backupdir=C:\\Users\\Furkan\\.scratch
-    set backupskip=C:\\Users\\Furkan\\.scratch\\*
-    set directory=.\\.scratch\\,C:\\Users\\Furkan\\.scratch\\
+    set backupdir=C:\\temp
+    set backupskip=C:\\temp\\*
+    set directory=.\\.scratch\\,C:\\temp\\
     set undodir=./.scratch//,/Users/yufufi/.scratch//
 else
     set backupdir=~/.scratch
@@ -38,8 +40,6 @@ if filewritable(".") && ! filewritable(".scratch")
 silent execute '!umask 002; mkdir .scratch'
 endif
 " }}}
-
-call pathogen#infect()
 
 " Colors {{{
 "colorscheme bayQua
@@ -72,12 +72,12 @@ set wildmode=list:longest,full "enables a menu at the bottom of vim
 set lazyredraw
 set showmatch
 if has("gui_macvim")
-set anti enc=utf-8
-set guifont=Source\ Code\ Pro\ Medium:h14
+    set anti enc=utf-8
+    set guifont=Source\ Code\ Pro\ Medium:h14
 else
-set guifont=Consolas:h11
-set guifont=Source\ Code\ Pro\ Medium:h14
-set guifont=Source\ Code\ Pro\ Semi-Bold\ 10 "gtk
+    set guifont=Consolas:h11
+    set guifont=Source\ Code\ Pro\ Medium:h10
+    "set guifont=Source\ Code\ Pro\ Semi-Bold\ 10 "gtk
 endif
 :auto BufEnter * let &titlestring = expand($_BUILDBRANCH) ." " . expand("%:p")
 " }}}
@@ -143,17 +143,18 @@ set scrolloff=3 "always have 3 lines above and below cursor visible (while scrol
 " }}}
 
 " Buffer management {{{
-nmap <C-S-tab> :bprevious<CR>
-nmap <C-tab> :bnext<CR>
-map <C-S-tab> :bprevious<CR>
-map <C-tab> :bnext<CR>
-imap <C-S-tab> <Esc>:bprevious<CR>i
-imap <C-tab> <Esc>:bnext<CR>i
-nmap <leader><tab> :bnext<CR>
-nmap <leader><tab> :bnext<CR>
-
-" nmap <C-t> :enew<CR>
-" imap <C-t> <Esc>:bnew<CR>
+if has("gui_macvim") || has("win32")
+    nmap <C-S-tab> :bprevious<CR>
+    nmap <C-tab> :bnext<CR>
+    map <C-S-tab> :bprevious<CR>
+    map <C-tab> :bnext<CR>
+    imap <C-S-tab> <Esc>:bprevious<CR>i
+    imap <C-tab> <Esc>:bnext<CR>i
+    nmap <leader><tab> :bnext<CR>
+    nmap <leader><tab> :bnext<CR>
+endif
+    " nmap <C-t> :enew<CR>
+    " imap <C-t> <Esc>:bnew<CR>
 " }}}
 
 " Custom Functions {{{
@@ -223,7 +224,7 @@ au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
 
 " Python Specific {{{
 autocmd FileType python setlocal omnifunc=jedi#completions
-autocmd BufEnter * :set noswapfile
+autocmd BufEnter *.py :set noswapfile
 " }}}
 
 " Plugin Configs {{{

@@ -143,14 +143,16 @@ set scrolloff=3 "always have 3 lines above and below cursor visible (while scrol
 " }}}
 
 " Buffer management {{{
-nmap <C-S-tab> :bprevious<CR>
-nmap <C-tab> :bnext<CR>
-map <C-S-tab> :bprevious<CR>
-map <C-tab> :bnext<CR>
-imap <C-S-tab> <Esc>:bprevious<CR>i
-imap <C-tab> <Esc>:bnext<CR>i
-nmap <leader><tab> :bnext<CR>
-nmap <leader><tab> :bnext<CR>
+if has("gui_macvim") || has("win32")
+    nmap <C-S-tab> :bprevious<CR>
+    nmap <C-tab> :bnext<CR>
+    map <C-S-tab> :bprevious<CR>
+    map <C-tab> :bnext<CR>
+    imap <C-S-tab> <Esc>:bprevious<CR>i
+    imap <C-tab> <Esc>:bnext<CR>i
+    nmap <leader><tab> :bnext<CR>
+    nmap <leader><tab> :bnext<CR>
+endif
 
 " nmap <C-t> :enew<CR>
 " imap <C-t> <Esc>:bnew<CR>

@@ -32,3 +32,5 @@ Run npm install under tern
 
 https://github.com/Shougo/vimproc.vim
 requires make under the folder or just run VimProcInstall
+
+And in .vim do `git submodule update --init --recursive` to download all the bundles.

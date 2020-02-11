@@ -1,10 +1,13 @@
 filetype off
 if ! has("win32")
     set shell=bash
+    set shell=fish
 endif
 
 set nocp
 call pathogen#infect()
+
+let g:OmniSharp_loglevel = 'debug'
 
 
 " no hitory tracking
@@ -18,49 +21,77 @@ if has("gui_macvim")
     set rtp+=/usr/local/opt/fzf
     set backupdir=/Users/yufufi/.scratch//
     set backupskip=/Users/yufufi/.scratch/*
-    set directory=./.scratch//,/Users/yufufi/scratch//
-    set undodir=./.scratch//,/Users/yufufi/scratch//
+    set directory=/Users/yufufi/scratch//
+    set undodir=/Users/yufufi/scratch//
 elseif has("win32")
     set backupdir=C:\\temp
     set backupskip=C:\\temp\\*
-    set directory=.\\.scratch\\,C:\\temp\\
-    set undodir=./.scratch//,/Users/yufufi/.scratch//
+    set directory=C:\\temp\\
+    set undodir=/Users/yufufi/.scratch//
 else
     set backupdir=~/.scratch
     set backupskip=~/.scratch/*
-    set directory=./.scratch//,~/.scratch//
-    set undodir=./.scratch//,~/.scratch//
+    set directory=~/.scratch//
+    set undodir=~/.scratch//
     set rtp+=~/.fzf
     set rtp+=/usr/local/opt/fzf
 endif
 set writebackup
 set backup
 " Automatically create .backup directory, writable by the group.
-if filewritable(".") && ! filewritable(".scratch")
-silent execute '!umask 002; mkdir .scratch'
-endif
+"if filewritable(".") && ! filewritable(".scratch")
+"silent execute '!umask 002; mkdir .scratch'
+"endif
 " }}}
 
 " Colors {{{
+" Stack them in order I used them in the past
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+" colorscheme PaperColor
+
+
+" colorscheme jellybeans
 "colorscheme bayQua
 " colorscheme mustang 
-colorscheme molokai
+" colorscheme molokai
+" colorscheme solarized
 "if(has('gui_running'))
 "colorscheme monokai
 "set background=dark
 "else
 "colorscheme mustang 
 "endif
-set background=dark
+"set background=dark
 syntax enable
 
+let iterm_profile = $ITERM_PROFILE
+
+set background=dark
+if iterm_profile == "Dark"
+    set background=dark
+else
+    set background=dark
+endif
 " }}}
+" colorscheme PaperColor
+" colorscheme mustang
+colorscheme gruvbox
+
 
 " Spaces & Tabs {{{
 set expandtab
 set tabstop=4
 set softtabstop=4
 filetype plugin indent on    " required
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+set nolist
+map <Leader>l :set list!<CR>
+nnoremap <leader>b :ls<cr>:b<space>
 " }}}
 
 " UI Config {{{
@@ -73,10 +104,11 @@ set lazyredraw
 set showmatch
 if has("gui_macvim")
     set anti enc=utf-8
-    set guifont=Source\ Code\ Pro\ Medium:h14
+    "set guifont=Source\ Code\ Pro\ Medium:h14
+    set guifont=SauceCodePowerline-Medium:h14
 else
     set guifont=Consolas:h11
-    set guifont=Source\ Code\ Pro\ Medium:h10
+    set guifont=SauceCodePowerline-Medium:h10
     "set guifont=Source\ Code\ Pro\ Semi-Bold\ 10 "gtk
 endif
 :auto BufEnter * let &titlestring = expand($_BUILDBRANCH) ." " . expand("%:p")
@@ -133,11 +165,12 @@ nnoremap gV `[v`]gV `[v`]
 nnoremap <leader>fr :CommandT<cr>
 
 nnoremap <leader>u :GundoToggle<CR>
-nnoremap <leader>ff :CommandT<CR>
-nnoremap <leader>fr :CommandTMRU<CR>
-nnoremap <leader>fb :CommandTBuffer<CR>
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fr :History<CR>
+nnoremap <leader>fb :Buffers<CR>
 nnoremap <leader>be :BufExplorerHorizontalSplit<CR>
 nnoremap <leader>om :Voom markdown<CR>
+nnoremap <leader>qq :qall<CR>
 
 set scrolloff=3 "always have 3 lines above and below cursor visible (while scrolling searching etc)
 " }}}
@@ -214,9 +247,15 @@ au BufNewFile,BufRead *.md set filetype=markdown
 " }}}
 
 " C# specific {{{
-autocmd FileType cs nnoremap <leader>kr :OmniSharpFindUsages<cr>
+autocmd FileType cs nnoremap <leader>osfu :OmniSharpFindUsages<cr>
+autocmd FileType cs nnoremap <leader>osgd :OmniSharpGotoDefinition<cr>
+autocmd FileType cs nnoremap <leader>osfi :OmniSharpFindImplementations<cr>
 autocmd FileType cs nnoremap <F12> :OmniSharpGotoDefinition<cr>
-autocmd FileType cs map <C-F12> :!ctags -R --exclude="bin" --extra=+fq --fields=+ianmzS -f d:\csharptag '--c\#-kinds=cimnp' d:/bliss/DataPlatform/LDPV2/<CR><CR>
+" autocmd FileType cs map <C-F12> :!ctags -R --exclude="bin" --extra=+fq --fields=+ianmzS -f d:\csharptag '--c\#-kinds=cimnp' d:/bliss/DataPlatform/LDPV2/<CR><CR>
+let g:OmniSharp_selector_ui = 'fzf'    " Use fzf.vim
+" let g:OmniSharp_server_use_mono = 1
+" let g:OmniSharp_port = 2000
+" let g:OmniSharp_start_server = 0
 au FileType cs set foldmethod=marker
 au FileType cs set foldmarker={,}
 au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
@@ -229,8 +268,22 @@ autocmd BufEnter *.py :set noswapfile
 
 " Plugin Configs {{{
 " vim-airline
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#obsession#enabled = 1
 " let g:EclimCompletionMethod = 'omnifunc'
+"
+
+" fugitive
+set diffopt+=vertical
+
+" vimux
+" open the prompt
+map <Leader>vp :VimuxPromptCommand<CR>
+" Inspect runner pane
+map <Leader>vi :VimuxInspectRunner<CR>
+" Zoom the tmux runner pane
+map <Leader>vz :VimuxZoomRunner<CR>
 
 " vimwiki-tasks
 let g:vimwiki_tasks_annotate_origin = 1
@@ -261,6 +314,9 @@ let g:ctrlp_max_files = 0
 "plugin settings
 let g:miniBufExplCloseOnSelect = 1
 let g:jedi#completions_command = "<A-Space>"
+
+" ale
+let g:ale_linters = { 'cs': ['OmniSharp'] }
 
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
@@ -297,9 +353,21 @@ autocmd FileType javascript map <F8> :TagbarToggle<CR>
 autocmd FileType javascript noremap <buffer> <F5> :call JsBeautify()<cr>
 
 " nerd tree
+" let g:NERDTreeHijackNetrw = 0 "// add this line if you use NERDTree
+if has("gui_macvim")
+    let g:ranger_replace_netrw = 0 "// don't open ranger when vim open a directory
+elseif has("win32")
+    let g:ranger_replace_netrw = 0 "// don't open ranger when vim open a directory
+else
+    let g:ranger_replace_netrw = 1 "// open ranger when vim open a directory
+endif
+
 nmap <C-a> :NERDTreeFind<CR>
 nmap <C-e> :NERDTreeToggle<CR>
 vnoremap . :norm.<CR>
+" let NERDTreeQuitOnOpen = 1
+" let NERDTreeMinimalUI = 1
+" let NERDTreeDirArrows = 1
 
 " }}}
 
@@ -320,10 +388,10 @@ set completeopt=menu,menuone,longest,preview
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "window size
-if(bufwinnr(1))
-    map - <c-w><
-    map + <c-w>>
-endif
+"if(bufwinnr(1))
+"    map - <c-w><
+"    map + <c-w>>
+"endif
 
 " new line without insert
 map <S-Enter> O<Esc>
@@ -359,9 +427,6 @@ set ruler " not required with vim-powerline
 set laststatus=2
 set undofile
 
-set list! " showinvisible characters
-set listchars=trail:·,tab:>-,eol:$,extends:>,precedes:<
-set list! " showinvisible characters
 "highlight NonText guifg=#4a4a59
 "highlight NonText guifg=#FFFFFF
 
@@ -371,6 +436,10 @@ set list! " showinvisible characters
 autocmd BufLeave,FocusLost * silent! wall
 
 " split window handling
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>ppx :silent 1,$!xmllint --format --sax1 --recover -<CR>
 nnoremap <leader>pph :silent 1,$!tidy -indent <CR>

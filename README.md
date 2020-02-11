@@ -34,3 +34,9 @@ https://github.com/Shougo/vimproc.vim
 requires make under the folder or just run VimProcInstall
 
 And in .vim do `git submodule update --init --recursive` to download all the bundles.
+
+https://vimawesome.com/plugin/vim-gitgutter
+
+vimproc needs to be built
+and then run VimProcInstall
+

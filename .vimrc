@@ -51,11 +51,10 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
+
 " colorscheme PaperColor
-
-
 " colorscheme jellybeans
-"colorscheme bayQua
+" colorscheme bayQua
 " colorscheme mustang 
 " colorscheme molokai
 " colorscheme solarized
@@ -79,8 +78,21 @@ endif
 " }}}
 " colorscheme PaperColor
 " colorscheme mustang
-colorscheme gruvbox
+" colorscheme gruvbox
+" colorscheme palenight
+" set background=light
+" let ayucolor="light"
+" colorscheme ayu
 
+" set t_ZH=^[[3m
+" set t_ZR=^[[23m
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+let g:gruvbox_italic=1
+colorscheme gruvbox
+"
+" Italics for my favorite color scheme
+let g:palenight_terminal_italics=1
 
 " Spaces & Tabs {{{
 set expandtab
@@ -88,8 +100,9 @@ set tabstop=4
 set softtabstop=4
 filetype plugin indent on    " required
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
-set nolist
+set listchars=tab:>·,trail:~,extends:>,precedes:< ",eol:¬,space:␣
+set list
+" set nolist
 map <Leader>l :set list!<CR>
 nnoremap <leader>b :ls<cr>:b<space>
 " }}}
@@ -104,12 +117,9 @@ set lazyredraw
 set showmatch
 if has("gui_macvim")
     set anti enc=utf-8
-    "set guifont=Source\ Code\ Pro\ Medium:h14
     set guifont=SauceCodePowerline-Medium:h14
 else
-    set guifont=Consolas:h11
     set guifont=SauceCodePowerline-Medium:h10
-    "set guifont=Source\ Code\ Pro\ Semi-Bold\ 10 "gtk
 endif
 :auto BufEnter * let &titlestring = expand($_BUILDBRANCH) ." " . expand("%:p")
 " }}}
@@ -172,20 +182,24 @@ nnoremap <leader>be :BufExplorerHorizontalSplit<CR>
 nnoremap <leader>om :Voom markdown<CR>
 nnoremap <leader>qq :qall<CR>
 
-set scrolloff=3 "always have 3 lines above and below cursor visible (while scrolling searching etc)
+set scrolloff=20 "always have 3 lines above and below cursor visible (while scrolling searching etc)
 " }}}
 
+set hidden
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>
+
 " Buffer management {{{
-if has("gui_macvim") || has("win32")
-    nmap <C-S-tab> :bprevious<CR>
-    nmap <C-tab> :bnext<CR>
-    map <C-S-tab> :bprevious<CR>
-    map <C-tab> :bnext<CR>
-    imap <C-S-tab> <Esc>:bprevious<CR>i
-    imap <C-tab> <Esc>:bnext<CR>i
-    nmap <leader><tab> :bnext<CR>
-    nmap <leader><tab> :bnext<CR>
-endif
+"if has("gui_macvim") || has("win32")
+    "nmap <C-S-tab> :bprevious<CR>
+nnoremap <C-tab> :bnext<CR>
+nnoremap <C-S-tab> :bprevious<CR>
+    "map <C-tab> :bnext<CR>
+    "imap <C-S-tab> <Esc>:bprevious<CR>i
+    "imap <C-tab> <Esc>:bnext<CR>i
+    "nmap <leader><tab> :bnext<CR>
+    "nmap <leader><tab> :bnext<CR>
+"endif
     " nmap <C-t> :enew<CR>
     " imap <C-t> <Esc>:bnew<CR>
 " }}}
@@ -256,9 +270,11 @@ let g:OmniSharp_selector_ui = 'fzf'    " Use fzf.vim
 " let g:OmniSharp_server_use_mono = 1
 " let g:OmniSharp_port = 2000
 " let g:OmniSharp_start_server = 0
-au FileType cs set foldmethod=marker
-au FileType cs set foldmarker={,}
-au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
+au FileType cs set foldmethod=syntax
+au FileType go set foldmethod=syntax
+" au FileType cs set foldmethod=marker
+" au FileType cs set foldmarker={,}
+" au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
 " }}}
 
 " Python Specific {{{
@@ -271,6 +287,10 @@ autocmd BufEnter *.py :set noswapfile
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#obsession#enabled = 1
+" let g:airline_theme = "palenight"
+" let g:airline_theme = "ayu"
+let g:airline_theme = "base16_gruvbox_dark_hard"
+let g:airline#extensions#obsession#indicator_text = '$'
 " let g:EclimCompletionMethod = 'omnifunc'
 "
 
@@ -305,8 +325,22 @@ let g:Tlist_WinWidth=50
 let tlist_vimwiki_settings = "wiki;h:Headers"
 let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:function'
 
-" syntastic
+" Syntastic config {{{
+" toggle between number and relativenumber
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi', 'tsc']
+let g:syntastic_typescript_checkers = ['tsuquyomi']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'passive_filetypes': ['java'] }
+" }}}
+"
 
 " CtrlP
 let g:ctrlp_max_files = 0
@@ -317,6 +351,7 @@ let g:jedi#completions_command = "<A-Space>"
 
 " ale
 let g:ale_linters = { 'cs': ['OmniSharp'] }
+let g:go_fmt_fail_silently = 1
 
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
@@ -359,11 +394,11 @@ if has("gui_macvim")
 elseif has("win32")
     let g:ranger_replace_netrw = 0 "// don't open ranger when vim open a directory
 else
-    let g:ranger_replace_netrw = 1 "// open ranger when vim open a directory
+    let g:ranger_replace_netrw = 0 "// open ranger when vim open a directory
 endif
 
-nmap <C-a> :NERDTreeFind<CR>
-nmap <C-e> :NERDTreeToggle<CR>
+" nmap <C-a> :NERDTreeFind<CR>
+" nmap <C-e> :NERDTreeToggle<CR>
 vnoremap . :norm.<CR>
 " let NERDTreeQuitOnOpen = 1
 " let NERDTreeMinimalUI = 1
@@ -494,16 +529,20 @@ endfunction
 
 " vim:foldmethod=marker:foldlevel=0
 
-" Syntastic config {{{
-" toggle between number and relativenumber
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"
+"
+" CTRL-A CTRL-Q to select all and build quickfix list
 
-let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tsuquyomi']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" }}}
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'

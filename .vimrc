@@ -16,23 +16,23 @@ let g:netrw_dirhistmax = 0
 " set verbose=20
 " Backups {{{
 " set updatecount=0
-set noswapfile
+" set noswapfile
 if has("gui_macvim")
     set rtp+=/usr/local/opt/fzf
-    set backupdir=/Users/yufufi/.scratch//
-    set backupskip=/Users/yufufi/.scratch/*
-    set directory=/Users/yufufi/scratch//
-    set undodir=/Users/yufufi/scratch//
+    set backupdir=$HOME/.scratch//
+    set backupskip=$HOME/.scratch/*
+    set directory=$HOME/.scratch//
+    set undodir=$HOME/.scratch//
 elseif has("win32")
     set backupdir=C:\\temp
     set backupskip=C:\\temp\\*
     set directory=C:\\temp\\
     set undodir=/Users/yufufi/.scratch//
 else
-    set backupdir=~/.scratch
-    set backupskip=~/.scratch/*
-    set directory=~/.scratch//
-    set undodir=~/.scratch//
+    set backupdir=~/.vim/tmp/bkp//,/tmp//
+    " set backupskip=~/.scratch/*
+    set directory=~/.vim/tmp/swp//,/tmp//
+    set undodir=~/.vim/tmp/und//,/tmp//
     set rtp+=~/.fzf
     set rtp+=/usr/local/opt/fzf
 endif
@@ -383,9 +383,9 @@ syn match Braces display '[{}()\[\]]'
 hi Braces guifg=#D33682
 
 " auto close options when exiting insert mode
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 set completeopt=menu,menuone,longest,preview
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "window size
 "if(bufwinnr(1))
@@ -395,7 +395,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " new line without insert
 map <S-Enter> O<Esc>
-map <CR> o<Esc>
+" map <CR> o<Esc>
 " easy escape
 inoremap jj <ESC>
 nnoremap ; :

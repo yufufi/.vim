@@ -28,13 +28,19 @@ elseif has("win32")
     set backupskip=C:\\temp\\*
     set directory=C:\\temp\\
     set undodir=/Users/yufufi/.scratch//
+elseif has("mac")
+    set backupdir=~/.vim/tmp/bkp//,/tmp//
+    set directory=~/.vim/tmp/swp//,/tmp//
+    set undodir=~/.vim/tmp/und//,/tmp//
+    set rtp+=~/.fzf
+    set rtp+=/usr/local/opt/fzf
 else
     set backupdir=~/.vim/tmp/bkp//,/tmp//
     " set backupskip=~/.scratch/*
     set directory=~/.vim/tmp/swp//,/tmp//
     set undodir=~/.vim/tmp/und//,/tmp//
     set rtp+=~/.fzf
-    set rtp+=/usr/local/opt/fzf
+    set rtp+=/usr/bin/fzf
 endif
 set writebackup
 set backup

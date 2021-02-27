@@ -208,17 +208,3 @@
 [submodule "bundle/vim-go"]
 	path = bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
-[submodule "vim-go"]
-	path = vim-go
-	url = https://github.com/fatih/vim-go.git
-[submodule "vim-ps1"]
-	path = vim-ps1
-	url = https://github.com/PProvost/vim-ps1.git
-[submodule "palenight.vim"]
-	path = palenight.vim
-	url = https://github.com/drewtempelmeyer/palenight.vim.git
-	branch = master
-[submodule "vim-airline-themes"]
-	path = vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes.git
-	branch = master

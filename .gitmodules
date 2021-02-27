@@ -194,3 +194,21 @@
 	path = bundle/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
 	branch = master
+[submodule "bundle/palenight.vim"]
+	path = bundle/palenight.vim
+	url = https://github.com/drewtempelmeyer/palenight.vim.git
+	branch = master
+[submodule "bundle/ayu-vim"]
+	path = bundle/ayu-vim
+	url = https://github.com/ayu-theme/ayu-vim.git
+	branch = master
+[submodule "bundle/vim-airline-themes"]
+	path = bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git
+	branch = master
+[submodule "bundle/vim-ps1"]
+	path = bundle/vim-ps1
+	url = https://github.com/PProvost/vim-ps1.git
+[submodule "bundle/vim-go"]
+	path = bundle/vim-go
+	url = https://github.com/fatih/vim-go.git

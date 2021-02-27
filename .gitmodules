@@ -50,10 +50,6 @@
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
 	branch = master
-[submodule "bundle/jedi-vim"]
-	path = bundle/jedi-vim
-	url = https://github.com/davidhalter/jedi-vim.git
-	branch = master
 [submodule "bundle/PyInteractive"]
 	path = bundle/PyInteractive
 	url = https://github.com/vim-scripts/PyInteractive.git

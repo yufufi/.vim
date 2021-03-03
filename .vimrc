@@ -289,16 +289,11 @@ autocmd BufEnter *.py :set noswapfile
 " }}}
 
 " Plugin Configs {{{
-" vim-airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#obsession#enabled = 1
-" let g:airline_theme = "palenight"
-" let g:airline_theme = "ayu"
-let g:airline_theme = "base16_gruvbox_dark_hard"
-let g:airline#extensions#obsession#indicator_text = '$'
-" let g:EclimCompletionMethod = 'omnifunc'
-"
+
+" powerline
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
 
 " fugitive
 set diffopt+=vertical
@@ -333,11 +328,14 @@ let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:
 
 " Syntastic config {{{
 " toggle between number and relativenumber
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" powerline doesn't allow direct manipulation of statusline
+" see: https://github.com/vim-syntastic/syntastic/issues/1689
+" jset statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_typescript_checkers = ['tsuquyomi', 'tsc']
 let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:syntastic_always_populate_loc_list = 1
@@ -359,23 +357,8 @@ let g:jedi#completions_command = "<A-Space>"
 let g:ale_linters = { 'cs': ['OmniSharp'] }
 let g:go_fmt_fail_silently = 1
 
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 1
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
 " autocmd FileType vimwiki map d :VimwikiMakeDiaryNote
-function! ToggleCalendar()
-  execute ":Calendar"
-  if exists("g:calendar_open")
-    if g:calendar_open == 1
-      execute "q"
-      unlet g:calendar_open
-    else
-      g:calendar_open = 1
-    end
-  else
-    let g:calendar_open = 1
-  end
-endfunction
 
 
 autocmd FileType calendar nmap <buffer> <CR> :<C-u>call vimwiki#diary#calendar_action(b:calendar.day().get_day(), b:calendar.day().get_month(), b:calendar.day().get_year(), b:calendar.day().week(), "V")<CR>

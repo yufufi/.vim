@@ -50,10 +50,6 @@
 	path = bundle/PyInteractive
 	url = https://github.com/vim-scripts/PyInteractive.git
 	branch = master
-[submodule "bundle/calendar"]
-	path = bundle/calendar
-	url = https://github.com/itchyny/calendar.vim
-	branch = master
 [submodule "bundle/taskpaper.vim"]
 	path = bundle/taskpaper.vim
 	url = https://github.com/davidoc/taskpaper.vim.git
@@ -77,10 +73,6 @@
 [submodule "bundle/bufexplorer.git"]
 	path = bundle/bufexplorer.git
 	url = https://github.com/jlanzarotta/bufexplorer.git
-	branch = master
-[submodule "bundle/VOoM.git"]
-	path = bundle/VOoM.git
-	url = https://github.com/vim-voom/VOoM.git
 	branch = master
 [submodule "bundle/vim-markdown.git"]
 	path = bundle/vim-markdown.git

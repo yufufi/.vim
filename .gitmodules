@@ -30,10 +30,6 @@
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
 	branch = master
-[submodule "bundle/vim-airline"]
-	path = bundle/vim-airline
-	url = https://github.com/vim-airline/vim-airline.git
-	branch = master
 [submodule "bundle/vim-autoformat"]
 	path = bundle/vim-autoformat
 	url = https://github.com/Chiel92/vim-autoformat.git
@@ -197,10 +193,6 @@
 [submodule "bundle/ayu-vim"]
 	path = bundle/ayu-vim
 	url = https://github.com/ayu-theme/ayu-vim.git
-	branch = master
-[submodule "bundle/vim-airline-themes"]
-	path = bundle/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes.git
 	branch = master
 [submodule "bundle/vim-ps1"]
 	path = bundle/vim-ps1

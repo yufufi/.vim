@@ -8,6 +8,8 @@ set nocp
 call pathogen#infect()
 
 
+runtime coc.vim
+
 " Old Plugins {{{
 "
 "
@@ -467,6 +469,7 @@ set ttyfast
 set ruler " not required with vim-powerline
 set laststatus=2
 set undofile
+
 
 "highlight NonText guifg=#4a4a59
 "highlight NonText guifg=#FFFFFF

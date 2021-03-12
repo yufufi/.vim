@@ -126,10 +126,6 @@
 	path = bundle/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align.git
 	branch = master
-[submodule "bundle/omnisharp-vim"]
-	path = bundle/omnisharp-vim
-	url = git://github.com/OmniSharp/omnisharp-vim.git
-	branch = master
 [submodule "bundle/ale"]
 	path = bundle/ale
 	url = https://github.com/w0rp/ale.git
@@ -200,3 +196,7 @@
 	path = bundle/vim-tmux-clipboard
 	url = https://github.com/roxma/vim-tmux-clipboard.git
 	branch = master
+[submodule "bundle/coc.nvim"]
+	path = bundle/coc.nvim
+	url = http://github.com/neoclide/coc.nvim
+	branch = release

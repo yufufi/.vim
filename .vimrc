@@ -7,8 +7,43 @@ endif
 set nocp
 call pathogen#infect()
 
-let g:OmniSharp_loglevel = 'debug'
 
+" Old Plugins {{{
+"
+"
+" let g:OmniSharp_loglevel = 'debug'
+"
+" C# Specific {{{
+"
+" autocmd FileType cs nnoremap <leader>osfu :OmniSharpFindUsages<cr>
+" autocmd FileType cs nnoremap <leader>osgd :OmniSharpGotoDefinition<cr>
+" autocmd FileType cs nnoremap <leader>osfi :OmniSharpFindImplementations<cr>
+" autocmd FileType cs nnoremap <F12> :OmniSharpGotoDefinition<cr>
+" autocmd FileType cs map <C-F12> :!ctags -R --exclude="bin" --extra=+fq --fields=+ianmzS -f d:\csharptag '--c\#-kinds=cimnp' d:/bliss/DataPlatform/LDPV2/<CR><CR>
+" let g:OmniSharp_selector_ui = 'fzf'    " Use fzf.vim
+" let g:OmniSharp_server_use_mono = 1
+" let g:OmniSharp_port = 2000
+" let g:OmniSharp_start_server = 0
+"
+" }}}
+"
+" Python Specific {{{
+"
+" autocmd FileType python setlocal omnifunc=jedi#completions
+" }}}
+" OmniCpp configs {{{
+" let OmniCpp_MayCompleteDot = 1 " autocomplete with .
+" let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
+" let OmniCpp_MayCompleteScope = 1 " autocomplete with ::
+" let OmniCpp_SelectFirstItem = 2 " select first item (but don't insert)
+" let OmniCpp_NamespaceSearch = 2 " search namespaces in this and included files
+" let OmniCpp_ShowPrototypeInAbbr = 1 " show function prototype (i.e. parameters) in popup window
+" }}}
+"
+" Ale {{{
+"
+" let g:ale_linters = { 'cs': ['OmniSharp'] }
+" }}}
 
 " no hitory tracking
 let g:netrw_dirhistmax = 0
@@ -267,15 +302,6 @@ au BufNewFile,BufRead *.md set filetype=markdown
 " }}}
 
 " C# specific {{{
-autocmd FileType cs nnoremap <leader>osfu :OmniSharpFindUsages<cr>
-autocmd FileType cs nnoremap <leader>osgd :OmniSharpGotoDefinition<cr>
-autocmd FileType cs nnoremap <leader>osfi :OmniSharpFindImplementations<cr>
-autocmd FileType cs nnoremap <F12> :OmniSharpGotoDefinition<cr>
-" autocmd FileType cs map <C-F12> :!ctags -R --exclude="bin" --extra=+fq --fields=+ianmzS -f d:\csharptag '--c\#-kinds=cimnp' d:/bliss/DataPlatform/LDPV2/<CR><CR>
-let g:OmniSharp_selector_ui = 'fzf'    " Use fzf.vim
-" let g:OmniSharp_server_use_mono = 1
-" let g:OmniSharp_port = 2000
-" let g:OmniSharp_start_server = 0
 au FileType cs set foldmethod=syntax
 au FileType go set foldmethod=syntax
 " au FileType cs set foldmethod=marker
@@ -284,7 +310,6 @@ au FileType go set foldmethod=syntax
 " }}}
 
 " Python Specific {{{
-autocmd FileType python setlocal omnifunc=jedi#completions
 autocmd BufEnter *.py :set noswapfile
 " }}}
 
@@ -312,13 +337,6 @@ let g:vimwiki_tasks_tags_nodue = '+nodue'
 let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/Documents/wiki', 'syntax': 'markdown', 'ext' : '.md'}]
 
-" -- configs --
-let OmniCpp_MayCompleteDot = 1 " autocomplete with .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete with ::
-let OmniCpp_SelectFirstItem = 2 " select first item (but don't insert)
-let OmniCpp_NamespaceSearch = 2 " search namespaces in this and included files
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function prototype (i.e. parameters) in popup window
 
 " taglist
 let g:Tlist_Use_Right_Window=1
@@ -354,7 +372,6 @@ let g:miniBufExplCloseOnSelect = 1
 let g:jedi#completions_command = "<A-Space>"
 
 " ale
-let g:ale_linters = { 'cs': ['OmniSharp'] }
 let g:go_fmt_fail_silently = 1
 
 au BufRead,BufNewFile *.wiki set filetype=vimwiki

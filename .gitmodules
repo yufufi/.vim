@@ -22,10 +22,6 @@
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
 	branch = master
-[submodule "bundle/supertab"]
-	path = bundle/supertab
-	url = https://github.com/ervandew/supertab.git
-	branch = master
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git

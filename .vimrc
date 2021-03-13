@@ -371,7 +371,6 @@ let g:ctrlp_max_files = 0
 
 "plugin settings
 let g:miniBufExplCloseOnSelect = 1
-let g:jedi#completions_command = "<A-Space>"
 
 " ale
 let g:go_fmt_fail_silently = 1
@@ -427,7 +426,7 @@ hi Braces guifg=#D33682
 
 " auto close options when exiting insert mode
 " autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-set completeopt=menu,menuone,longest,preview
+" set completeopt=menu,menuone,longest,preview
 "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "window size

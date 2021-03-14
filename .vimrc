@@ -10,43 +10,6 @@ call pathogen#infect()
 
 runtime coc.vim
 
-" Old Plugins {{{
-"
-"
-" let g:OmniSharp_loglevel = 'debug'
-"
-" C# Specific {{{
-"
-" autocmd FileType cs nnoremap <leader>osfu :OmniSharpFindUsages<cr>
-" autocmd FileType cs nnoremap <leader>osgd :OmniSharpGotoDefinition<cr>
-" autocmd FileType cs nnoremap <leader>osfi :OmniSharpFindImplementations<cr>
-" autocmd FileType cs nnoremap <F12> :OmniSharpGotoDefinition<cr>
-" autocmd FileType cs map <C-F12> :!ctags -R --exclude="bin" --extra=+fq --fields=+ianmzS -f d:\csharptag '--c\#-kinds=cimnp' d:/bliss/DataPlatform/LDPV2/<CR><CR>
-" let g:OmniSharp_selector_ui = 'fzf'    " Use fzf.vim
-" let g:OmniSharp_server_use_mono = 1
-" let g:OmniSharp_port = 2000
-" let g:OmniSharp_start_server = 0
-"
-" }}}
-"
-" Python Specific {{{
-"
-" autocmd FileType python setlocal omnifunc=jedi#completions
-" }}}
-" OmniCpp configs {{{
-" let OmniCpp_MayCompleteDot = 1 " autocomplete with .
-" let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
-" let OmniCpp_MayCompleteScope = 1 " autocomplete with ::
-" let OmniCpp_SelectFirstItem = 2 " select first item (but don't insert)
-" let OmniCpp_NamespaceSearch = 2 " search namespaces in this and included files
-" let OmniCpp_ShowPrototypeInAbbr = 1 " show function prototype (i.e. parameters) in popup window
-" }}}
-"
-" Ale {{{
-"
-" let g:ale_linters = { 'cs': ['OmniSharp'] }
-" }}}
-
 " no hitory tracking
 let g:netrw_dirhistmax = 0
 
@@ -247,47 +210,6 @@ nnoremap <C-S-tab> :bprevious<CR>
     " imap <C-t> <Esc>:bnew<CR>
 " }}}
 
-" Custom Functions {{{
-" toggle between number and relativenumber
-function! ToggleNumber()
-    if(&relativenumber == 1)
-        set norelativenumber
-        set number
-    else
-        set relativenumber
-    endif
-endfunc
-
-function! VimwikiLinkHandler(link)
-    " Use Vim to open external files with the 'vfile:' scheme.  E.g.:
-    "
-    "   1) [[vfile:~/Code/PythonProject/abc123.py]]
-    "   2) [[vfile:./|Wiki Home]]
-    let link = a:link
-    if link =~# '^vfile:'
-      let link = link[1:]
-    else
-      return 0
-    endif
-    let link_infos = vimwiki#base#resolve_link(link)
-    if link_infos.filename == ''
-      echomsg 'Vimwiki Error: Unable to resolve link!'
-      return 0
-    else
-      exe 'e ' . fnameescape(link_infos.filename)
-      return 1
-    endif
-endfunction
-
-" pandoc, markdown
-command! -nargs=* Pandoc
-    \ | let g:pandoc_filename=tempname()
-    \ | execute ':silent !pandoc -o "'.g:pandoc_filename.'" <args>'
-    \ | execute ':redraw!'
-
-command! -nargs=* PandocPreview
-    \ | execute ':silent !start C:\Program Files (x86)\Google\Chrome\Application\chrome.exe '.g:pandoc_filename
-    \ | execute ':redraw!'
 
 " Clipboard {{{
 set clipboard=unnamed
@@ -340,35 +262,6 @@ let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/Documents/wiki', 'syntax': 'markdown', 'ext' : '.md'}]
 
 
-" taglist
-let g:Tlist_Use_Right_Window=1
-let g:Tlist_WinWidth=50
-let tlist_vimwiki_settings = "wiki;h:Headers"
-let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:function'
-
-" Syntastic config {{{
-" toggle between number and relativenumber
-" powerline doesn't allow direct manipulation of statusline
-" see: https://github.com/vim-syntastic/syntastic/issues/1689
-" jset statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_typescript_checkers = ['tsuquyomi', 'tsc']
-let g:syntastic_typescript_checkers = ['tsuquyomi']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'passive_filetypes': ['java'] }
-" }}}
-"
-
-" CtrlP
-let g:ctrlp_max_files = 0
-
 "plugin settings
 let g:miniBufExplCloseOnSelect = 1
 
@@ -378,8 +271,6 @@ let g:go_fmt_fail_silently = 1
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
 " autocmd FileType vimwiki map d :VimwikiMakeDiaryNote
 
-
-autocmd FileType calendar nmap <buffer> <CR> :<C-u>call vimwiki#diary#calendar_action(b:calendar.day().get_day(), b:calendar.day().get_month(), b:calendar.day().get_year(), b:calendar.day().week(), "V")<CR>
 " }}}
 
 " File Handling {{{
@@ -387,8 +278,6 @@ set encoding=utf-8
 " }}}
 
 " Plugin Key Mappings {{{
-noremap <F3> :Autoformat<CR>
-nnoremap <leader>tl :TlistToggle<CR>
 
 " Javascript
 autocmd FileType javascript map <F8> :TagbarToggle<CR>
@@ -443,19 +332,6 @@ inoremap jj <ESC>
 nnoremap ; :
 
 
-" add current directory's generated tags file to available tags
-" autocmd FileType cs set tags+=d:\bliss\dataplatform\ldpv2\csharptag
-set tags =tags,.tags
-" Filetype specific tag files (This is used for global IDE tags)
-autocmd FileType c              set tags=.tags_cpp,$HOME/.vim/tags/cpp
-autocmd FileType cpp            set tags=.tags_cpp,$HOME/.vim/tags/cpp
-autocmd FileType css            set tags=.tags_css,$HOME/.vim/tags/css
-autocmd FileType java           set tags=.tags_java,$HOME/.vim/tags/java
-autocmd FileType javascript     set tags=.tags_js,$HOME/.vim/tags/js
-autocmd FileType html           set tags=.tags_html,$HOME/.vim/tags/html
-autocmd FileType php            set tags=.tags_php,$HOME/.vim/tags/php
-autocmd FileType sh             set tags=.tags_sh,$HOME/.vim/tags/sh
-
 " set textwidth=140
 set shiftwidth=4
 set autoindent
@@ -470,12 +346,6 @@ set laststatus=2
 set undofile
 
 
-"highlight NonText guifg=#4a4a59
-"highlight NonText guifg=#FFFFFF
-
-"highlight NonText guifg=#4a4a59
-"highlight SpecialKey guifg=#4a4a59
-
 autocmd BufLeave,FocusLost * silent! wall
 
 " split window handling
@@ -484,10 +354,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <leader>ppx :silent 1,$!xmllint --format --sax1 --recover -<CR>
-nnoremap <leader>pph :silent 1,$!tidy -indent <CR>
-nnoremap <leader>ppja :silent 1,$!python -mjson.tool <CR>
-nnoremap <leader>ppc :call CssPretty()<CR>
 nmap <leader>cpf :let @*=expand("%:p")<CR>
 
 
@@ -510,26 +376,6 @@ augroup json_autocmd
   autocmd FileType json set expandtab 
   autocmd FileType json set foldmethod=syntax 
 augroup END 
-
-function! MakeSession()
-  let b:sessiondir = $HOME . "\\vimsessions\\" . $_BUILDBRANCH
-  if (filewritable(b:sessiondir) != 2)
-    exe 'silent !mkdir -p ' b:sessiondir
-    redraw!
-  endif
-  let b:filename = b:sessiondir . "\\session.vim"
-  exe "mksession! " . b:filename
-endfunction
-
-function! LoadSession()
-  let b:sessiondir = $HOME . "\\vimsessions\\" . $_BUILDBRANCH
-  let b:sessionfile = b:sessiondir . "\\session.vim"
-  if (filereadable(b:sessionfile))
-    exe 'source ' b:sessionfile
-  else
-    echo "No session loaded."
-  endif
-endfunction
 
 " }}}
 "au VimEnter * nested :call LoadSession()

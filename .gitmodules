@@ -62,10 +62,6 @@
 	path = bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
 	branch = master
-[submodule "bundle/typescript-vim"]
-	path = bundle/typescript-vim
-	url = https://github.com/leafgarland/typescript-vim
-	branch = master
 [submodule "bundle/fzf.vim"]
 	path = bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git

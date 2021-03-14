@@ -70,10 +70,6 @@
 	path = bundle/vim-signature
 	url = https://github.com/kshenoy/vim-signature.git
 	branch = master
-[submodule "bundle/tsuquyomi"]
-	path = bundle/tsuquyomi
-	url = https://github.com/Quramy/tsuquyomi
-	branch = master
 [submodule "bundle/vimproc"]
 	path = bundle/vimproc
 	url = https://github.com/Shougo/vimproc.vim.git

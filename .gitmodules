@@ -102,10 +102,6 @@
 	path = bundle/tsuquyomi
 	url = https://github.com/Quramy/tsuquyomi
 	branch = master
-[submodule "bundle/vim-less"]
-	path = bundle/vim-less
-	url = https://github.com/groenewege/vim-less
-	branch = master
 [submodule "bundle/vimproc"]
 	path = bundle/vimproc
 	url = https://github.com/Shougo/vimproc.vim.git

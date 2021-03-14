@@ -106,10 +106,6 @@
 	path = bundle/ale
 	url = https://github.com/w0rp/ale.git
 	branch = master
-[submodule "bundle/vim-gitgutter"]
-	path = bundle/vim-gitgutter
-	url = git://github.com/airblade/vim-gitgutter.git
-	branch = master
 [submodule "bundle/scratch.vim"]
 	path = bundle/scratch.vim
 	url = https://github.com/mtth/scratch.vim

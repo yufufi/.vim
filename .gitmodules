@@ -2,10 +2,6 @@
 	path = bundle/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
 	branch = master
-[submodule "bundle/goyo"]
-	path = bundle/goyo
-	url = https://github.com/junegunn/goyo.vim.git
-	branch = master
 [submodule "gundo.vim"]
 	path = gundo.vim
 	url = https://github.com/sjl/gundo.vim.git
@@ -13,10 +9,6 @@
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
-	branch = master
-[submodule "bundle/limelight"]
-	path = bundle/limelight
-	url = https://github.com/junegunn/limelight.vim.git
 	branch = master
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
@@ -57,10 +49,6 @@
 [submodule "autoload/plug.vim"]
 	path = autoload/plug.vim
 	url = https://github.com/junegunn/vim-plug.git
-	branch = master
-[submodule "bundle/swift.vim"]
-	path = bundle/swift.vim
-	url = https://github.com/keith/swift.vim
 	branch = master
 [submodule "bundle/vimwiki.git"]
 	path = bundle/vimwiki.git

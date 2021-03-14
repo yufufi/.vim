@@ -156,8 +156,10 @@ vnoremap / /\v
 
 " Folding {{{
 set foldenable
-set foldlevelstart=10
+set foldlevelstart=5
 set foldnestmax=10
+set foldlevel=0
+set foldmethod=marker
 
 " preserve the folds
 " autocmd BufWinLeave *.* mkview
@@ -380,8 +382,6 @@ augroup END
 " }}}
 "au VimEnter * nested :call LoadSession()
 "au VimLeave * :call MakeSession()
-
-" vim:foldmethod=marker:foldlevel=0
 
 "
 "

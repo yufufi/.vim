@@ -34,10 +34,6 @@
 	path = bundle/PyInteractive
 	url = https://github.com/vim-scripts/PyInteractive.git
 	branch = master
-[submodule "bundle/taskpaper.vim"]
-	path = bundle/taskpaper.vim
-	url = https://github.com/davidoc/taskpaper.vim.git
-	branch = master
 [submodule "bundle/vim-plug"]
 	path = bundle/vim-plug
 	url = https://github.com/junegunn/vim-plug.git

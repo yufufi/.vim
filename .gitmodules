@@ -152,3 +152,7 @@
 	path = bundle/coc.nvim
 	url = http://github.com/neoclide/coc.nvim
 	branch = release
+[submodule "bundle/fzf"]
+	path = bundle/fzf
+	url = https://github.com/junegunn/fzf
+	branch = master

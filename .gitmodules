@@ -42,10 +42,6 @@
 	path = bundle/vimwiki.git
 	url = https://github.com/vimwiki/vimwiki.git
 	branch = master
-[submodule "bundle/bufexplorer.git"]
-	path = bundle/bufexplorer.git
-	url = https://github.com/jlanzarotta/bufexplorer.git
-	branch = master
 [submodule "bundle/vim-markdown.git"]
 	path = bundle/vim-markdown.git
 	url = https://github.com/gabrielelana/vim-markdown.git

@@ -14,10 +14,6 @@
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
 	branch = master
-[submodule "bundle/vim-colors-solarized"]
-	path = bundle/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-	branch = master
 [submodule "bundle/vim-easymotion"]
 	path = bundle/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git

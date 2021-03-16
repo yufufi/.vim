@@ -102,10 +102,6 @@
 	path = bundle/vimux
 	url = https://github.com/benmills/vimux.git
 	branch = master
-[submodule "bundle/ranger.vim"]
-	path = bundle/ranger.vim
-	url = https://github.com/francoiscabrol/ranger.vim.git
-	branch = master
 [submodule "bundle/vim-fish"]
 	path = bundle/vim-fish
 	url = https://github.com/dag/vim-fish.git

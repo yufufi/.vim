@@ -10,10 +10,6 @@ call pathogen#infect()
 
 runtime coc.vim
 
-" no hitory tracking
-let g:netrw_dirhistmax = 0
-
-" set verbose=20
 " Backups {{{
 " set updatecount=0
 " set noswapfile
@@ -36,7 +32,6 @@ elseif has("mac")
     set rtp+=/usr/local/opt/fzf
 else
     set backupdir=~/.vim/tmp/bkp//,/tmp//
-    " set backupskip=~/.scratch/*
     set directory=~/.vim/tmp/swp//,/tmp//
     set undodir=~/.vim/tmp/und//,/tmp//
     set rtp+=~/.fzf
@@ -81,26 +76,15 @@ if iterm_profile == "Dark"
 else
     set background=dark
 endif
-" }}}
-" colorscheme PaperColor
-" colorscheme mustang
-" colorscheme gruvbox
-" colorscheme palenight
-" set background=light
-" let ayucolor="light"
-" colorscheme ayu
 
-" set t_ZH=^[[3m
-" set t_ZR=^[[23m
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 let g:gruvbox_italic=1
 colorscheme gruvbox
 "
-" Italics for my favorite color scheme
-let g:palenight_terminal_italics=1
+" }}}
 
-" Spaces & Tabs {{{
+" Tabs and spaces {{{
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -145,7 +129,6 @@ nnoremap <leader><space> :noh<cr>
 "disable vim specifc regex
 nnoremap / /\v
 vnoremap / /\v
-"nnoremap <tab> %
 
 :" The leader defaults to backslash, so (by default) this
 :" maps \* and \g* (see :help Leader).
@@ -161,33 +144,21 @@ set foldnestmax=10
 set foldlevel=0
 set foldmethod=marker
 
-" preserve the folds
-" autocmd BufWinLeave *.* mkview
-" autocmd BufWinEnter *.* silent loadview
 " }}}
 
 " Movement {{{
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 " highlight last inserted text
 nnoremap gV `[v`]gV `[v`]
 
-nnoremap <leader>fr :CommandT<cr>
-
 nnoremap <leader>u :GundoToggle<CR>
-nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fr :History<CR>
-nnoremap <leader>fb :Buffers<CR>
-nnoremap <leader>be :BufExplorerHorizontalSplit<CR>
-nnoremap <leader>om :Voom markdown<CR>
+nnoremap <leader>eh :History<CR>
+nnoremap <leader>ef :Files<CR>
+nnoremap <leader>eb :Buffers<CR>
+nnoremap <leader>egc :Commits<CR>
+nnoremap <leader>egf :GFiles<CR>
+nnoremap <leader>egs :GFiles?<CR>
 nnoremap <leader>qq :qall<CR>
 
 set scrolloff=20 "always have 3 lines above and below cursor visible (while scrolling searching etc)
@@ -230,9 +201,6 @@ au BufNewFile,BufRead *.md set filetype=markdown
 " C# specific {{{
 au FileType cs set foldmethod=syntax
 au FileType go set foldmethod=syntax
-" au FileType cs set foldmethod=marker
-" au FileType cs set foldmarker={,}
-" au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
 " }}}
 
 " Python Specific {{{
@@ -264,9 +232,6 @@ let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/Documents/wiki', 'syntax': 'markdown', 'ext' : '.md'}]
 
 
-"plugin settings
-let g:miniBufExplCloseOnSelect = 1
-
 " ale
 let g:go_fmt_fail_silently = 1
 
@@ -285,22 +250,10 @@ set encoding=utf-8
 autocmd FileType javascript map <F8> :TagbarToggle<CR>
 autocmd FileType javascript noremap <buffer> <F5> :call JsBeautify()<cr>
 
-" nerd tree
-" let g:NERDTreeHijackNetrw = 0 "// add this line if you use NERDTree
-if has("gui_macvim")
-    let g:ranger_replace_netrw = 0 "// don't open ranger when vim open a directory
-elseif has("win32")
-    let g:ranger_replace_netrw = 0 "// don't open ranger when vim open a directory
-else
-    let g:ranger_replace_netrw = 0 "// open ranger when vim open a directory
-endif
+" no hitory tracking
+let g:netrw_dirhistmax = 0
 
-" nmap <C-a> :NERDTreeFind<CR>
-" nmap <C-e> :NERDTreeToggle<CR>
 vnoremap . :norm.<CR>
-" let NERDTreeQuitOnOpen = 1
-" let NERDTreeMinimalUI = 1
-" let NERDTreeDirArrows = 1
 
 " }}}
 

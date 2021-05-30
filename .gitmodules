@@ -2,145 +2,184 @@
 	path = bundle/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
 	branch = master
+	update = rebase
 [submodule "gundo.vim"]
 	path = gundo.vim
 	url = https://github.com/sjl/gundo.vim.git
 	branch = master
+	update = rebase
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
 	branch = master
+	update = rebase
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-easymotion"]
 	path = bundle/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
 	branch = master
+	update = rebase
 [submodule "bundle/PyInteractive"]
 	path = bundle/PyInteractive
 	url = https://github.com/vim-scripts/PyInteractive.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-plug"]
 	path = bundle/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
 	branch = master
+	update = rebase
 [submodule "autoload/plug.vim"]
 	path = autoload/plug.vim
 	url = https://github.com/junegunn/vim-plug.git
 	branch = master
+	update = rebase
 [submodule "bundle/vimwiki.git"]
 	path = bundle/vimwiki.git
 	url = https://github.com/vimwiki/vimwiki.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-markdown.git"]
 	path = bundle/vim-markdown.git
 	url = https://github.com/gabrielelana/vim-markdown.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-colorschemes"]
 	path = bundle/vim-colorschemes
 	url = https://github.com/flazz/vim-colorschemes.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-dispatch"]
 	path = bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
 	branch = master
+	update = rebase
 [submodule "bundle/fzf.vim"]
 	path = bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-signature"]
 	path = bundle/vim-signature
 	url = https://github.com/kshenoy/vim-signature.git
 	branch = master
+	update = rebase
 [submodule "bundle/vimproc"]
 	path = bundle/vimproc
 	url = https://github.com/Shougo/vimproc.vim.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-easy-align"]
 	path = bundle/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align.git
 	branch = master
+	update = rebase
 [submodule "bundle/ale"]
 	path = bundle/ale
 	url = https://github.com/w0rp/ale.git
 	branch = master
+	update = rebase
 [submodule "bundle/scratch.vim"]
 	path = bundle/scratch.vim
 	url = https://github.com/mtth/scratch.vim
 	branch = master
+	update = rebase
 [submodule "bundle/vim-terraform"]
 	path = bundle/vim-terraform
 	url = https://github.com/hashivim/vim-terraform.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-sensible"]
 	path = bundle/vim-sensible
 	url = https://github.com/tpope/vim-sensible.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-tmux-navigator"]
 	path = bundle/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
 	branch = master
+	update = rebase
 [submodule "bundle/vimux"]
 	path = bundle/vimux
 	url = https://github.com/benmills/vimux.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-fish"]
 	path = bundle/vim-fish
 	url = https://github.com/dag/vim-fish.git
 	branch = master
+	update = rebase
 [submodule "bundle/repeat"]
 	path = bundle/repeat
 	url = https://tpope.io/vim/repeat.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-obsession"]
 	path = bundle/vim-obsession
 	url = git://github.com/tpope/vim-obsession.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-vinegar"]
 	path = bundle/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
 	branch = master
+	update = rebase
 [submodule "bundle/palenight.vim"]
 	path = bundle/palenight.vim
 	url = https://github.com/drewtempelmeyer/palenight.vim.git
 	branch = master
+	update = rebase
 [submodule "bundle/ayu-vim"]
 	path = bundle/ayu-vim
 	url = https://github.com/ayu-theme/ayu-vim.git
 	branch = master
+	update = rebase
 [submodule "bundle/vim-ps1"]
 	path = bundle/vim-ps1
 	url = https://github.com/PProvost/vim-ps1.git
+	branch = master
+	update = rebase
 [submodule "bundle/vim-go"]
 	path = bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
+	branch = master
+	update = rebase
 [submodule "bundle/vim-tmux-focus-events"]
 	path = bundle/vim-tmux-focus-events
 	url = https://github.com/tmux-plugins/vim-tmux-focus-events
 	branch = master
+	update = rebase
 [submodule "bundle/vim-tmux-clipboard"]
 	path = bundle/vim-tmux-clipboard
 	url = https://github.com/roxma/vim-tmux-clipboard.git
 	branch = master
+	update = rebase
 [submodule "bundle/coc.nvim"]
 	path = bundle/coc.nvim
 	url = http://github.com/neoclide/coc.nvim
 	branch = release
+	update = rebase
 [submodule "bundle/fzf"]
 	path = bundle/fzf
 	url = https://github.com/junegunn/fzf
 	branch = master
+	update = rebase

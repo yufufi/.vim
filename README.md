@@ -39,4 +39,18 @@ https://vimawesome.com/plugin/vim-gitgutter
 
 vimproc needs to be built
 and then run VimProcInstall
+    using
 
+## Copy all matching lines to a register
+1. Clean register `a`
+2. Append every matching line to register `a`
+```
+qaq
+:g/var\.[A-Za-z_]*/y And
+```
+
+## File references
+A new file with name `filename` in the current file's directory:
+```
+e %:h/filename
+``

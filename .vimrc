@@ -245,7 +245,7 @@ map <Leader>vz :VimuxZoomRunner<CR>
 let g:vimwiki_tasks_annotate_origin = 1
 let g:vimwiki_tasks_tags_nodue = '+nodue'
 let g:vimwiki_global_ext = 0
-let g:vimwiki_list = [{'path': '~/Documents/wiki', 'syntax': 'markdown', 'ext' : '.md'}]
+let g:vimwiki_list = [{'path': '~/sources/wiki', 'syntax': 'markdown', 'ext' : '.md'}]
 
 
 " ale

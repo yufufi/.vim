@@ -19,6 +19,7 @@ if has("gui_macvim")
     set backupskip=$HOME/.scratch/*
     set directory=$HOME/.scratch//
     set undodir=$HOME/.scratch//
+    let g:scratch_persistence_file=$HOME/.scratch/vim
 elseif has("win32")
     set backupdir=C:\\temp
     set backupskip=C:\\temp\\*
@@ -30,12 +31,14 @@ elseif has("mac")
     set undodir=~/.vim/tmp/und//,/tmp//
     set rtp+=~/.fzf
     set rtp+=/usr/local/opt/fzf
+    let g:scratch_persistence_file=~/.vim/tmp/scartch
 else
     set backupdir=~/.vim/tmp/bkp//,/tmp//
     set directory=~/.vim/tmp/swp//,/tmp//
     set undodir=~/.vim/tmp/und//,/tmp//
     set rtp+=~/.fzf
     set rtp+=/usr/bin/fzf
+    let g:scratch_persistence_file="~/.vim/tmp/scratch"
 endif
 set writebackup
 set backup
@@ -186,6 +189,19 @@ nnoremap <C-S-tab> :bprevious<CR>
 
 " Clipboard {{{
 set clipboard=unnamed
+
+" send yanked stuff via reversetunnel over ssh
+function! CopyToClipboardListener(regcontents) "{{{
+    " :execute "!echo " . shellescape(join(a:regcontents, "\\\r\n")) . "| nc -q0 localhost 5556"
+    " https://stackoverflow.com/questions/23380919/passing-a-multiline-string-in-vimscript-to-an-external-script
+    silent execute '!printf "\%s" '. shellescape(join(a:regcontents, "\n"), 1) .' | nc -q0 localhost 5556'
+endfunction "}}}
+
+augroup CopyToClipboard
+    autocmd!
+    autocmd TextYankPost * if v:event.operator ==# 'y' && v:event.regname == '' | call CopyToClipboardListener(v:event.regcontents) | endif
+augroup END
+
 " }}}
 
 " FileType Mappings {{{

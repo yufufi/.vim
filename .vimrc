@@ -4,9 +4,14 @@ if ! has("win32")
     set shell=fish
 endif
 
+if has('win32') || has('win64')
+  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+endif
+
 set nocp
 call pathogen#infect()
 
+"# set pythonthreedll=C:\\Users\\furkanfidan\\appdata\\local\\programs\\Python\\Python310.dll
 
 runtime coc.vim
 
@@ -24,7 +29,7 @@ elseif has("win32")
     set backupdir=C:\\temp
     set backupskip=C:\\temp\\*
     set directory=C:\\temp\\
-    set undodir=/Users/yufufi/.scratch//
+    set undodir=C:\\temp\\
 elseif has("mac")
     set backupdir=~/.vim/tmp/bkp//,/tmp//
     set directory=~/.vim/tmp/swp//,/tmp//
@@ -113,6 +118,7 @@ if has("gui_macvim")
     set guifont=SauceCodePowerline-Medium:h14
 else
     set guifont=SauceCodePowerline-Medium:h10
+    set guifont=SauceCodePro_NF:h12:cANSI:qDRAFT
 endif
 :auto BufEnter * let &titlestring = expand($_BUILDBRANCH) ." " . expand("%:p")
 " }}}
@@ -240,6 +246,7 @@ map <Leader>vp :VimuxPromptCommand<CR>
 map <Leader>vi :VimuxInspectRunner<CR>
 " Zoom the tmux runner pane
 map <Leader>vz :VimuxZoomRunner<CR>
+let g:VimuxTmuxCommand = 'cmd'
 
 " vimwiki-tasks
 let g:vimwiki_tasks_annotate_origin = 1

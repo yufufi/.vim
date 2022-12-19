@@ -21,12 +21,12 @@ runtime ~/.vim/coc.vim
 " set updatecount=0
 " set noswapfile
 if has("gui_macvim")
+    set backupdir=~/.vim/tmp/bkp//,/tmp//
+    set directory=~/.vim/tmp/swp//,/tmp//
+    set undodir=~/.vim/tmp/und//,/tmp//
+    set rtp+=~/.fzf
     set rtp+=/usr/local/opt/fzf
-    set backupdir=$HOME/.scratch//
-    set backupskip=$HOME/.scratch/*
-    set directory=$HOME/.scratch//
-    set undodir=$HOME/.scratch//
-    let g:scratch_persistence_file=$HOME/.scratch/vim
+    let g:scratch_persistence_file="~/.vim/tmp/scratch"
 elseif has("win32")
     set backupdir=C:\\temp
     set backupskip=C:\\temp\\*
@@ -38,7 +38,7 @@ elseif has("mac")
     set undodir=~/.vim/tmp/und//,/tmp//
     set rtp+=~/.fzf
     set rtp+=/usr/local/opt/fzf
-    let g:scratch_persistence_file=~/.vim/tmp/scartch
+    let g:scratch_persistence_file="~/.vim/tmp/scratch"
 else
     set backupdir=~/.vim/tmp/bkp//,/tmp//
     set directory=~/.vim/tmp/swp//,/tmp//
@@ -126,6 +126,7 @@ set showmatch
 if has("gui_macvim")
     set anti enc=utf-8
     set guifont=SauceCodePowerline-Medium:h14
+    set guifont=JetBrainsMonoMediumNerdFontCompleteM-Medium:h14
 else
     set guifont=SauceCodePowerline-Medium:h10
     set guifont=SauceCodePro_NF:h12:cANSI:qDRAFT
@@ -211,6 +212,15 @@ function! CopyToClipboardListener(regcontents) "{{{
     " :execute "!echo " . shellescape(join(a:regcontents, "\\\r\n")) . "| nc -q0 localhost 5556"
     " https://stackoverflow.com/questions/23380919/passing-a-multiline-string-in-vimscript-to-an-external-script
     " silent execute '!printf "\%s" '. shellescape(join(a:regcontents, "\n"), 1) .' | nc -q0 localhost 5556'
+if has("gui_macvim")
+    " silent execute '!printf "\%s" '. shellescape(join(a:regcontents, "\n"), 1) .' | nc -q0 localhost 5556'
+elseif has("win32")
+    " silent execute '!printf "\%s" '. shellescape(join(a:regcontents, "\n"), 1) .' | nc -q0 localhost 5556'
+elseif has("mac")
+    " silent execute '!printf "\%s" '. shellescape(join(a:regcontents, "\n"), 1) .' | nc -q0 localhost 5556'
+else
+    " silent execute '!printf "\%s" '. shellescape(join(a:regcontents, "\n"), 1) .' | nc -q0 localhost 5556'
+endif
 endfunction "}}}
 
 augroup CopyToClipboard

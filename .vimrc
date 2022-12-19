@@ -13,7 +13,9 @@ call pathogen#infect()
 
 "# set pythonthreedll=C:\\Users\\furkanfidan\\appdata\\local\\programs\\Python\\Python310.dll
 
-runtime coc.vim
+" https://stackoverflow.com/questions/4976776/how-to-get-path-to-the-current-vimscript-being-executed
+" let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+runtime ~/.vim/coc.vim
 
 " Backups {{{
 " set updatecount=0
@@ -51,6 +53,14 @@ set backup
 "if filewritable(".") && ! filewritable(".scratch")
 "silent execute '!umask 002; mkdir .scratch'
 "endif
+" }}}
+
+" UI {{{
+set guioptions-=T
+set guioptions-=r
+set guioptions-=m
+set guioptions+=R
+
 " }}}
 
 " Colors {{{
@@ -200,7 +210,7 @@ set clipboard=unnamed
 function! CopyToClipboardListener(regcontents) "{{{
     " :execute "!echo " . shellescape(join(a:regcontents, "\\\r\n")) . "| nc -q0 localhost 5556"
     " https://stackoverflow.com/questions/23380919/passing-a-multiline-string-in-vimscript-to-an-external-script
-    silent execute '!printf "\%s" '. shellescape(join(a:regcontents, "\n"), 1) .' | nc -q0 localhost 5556'
+    " silent execute '!printf "\%s" '. shellescape(join(a:regcontents, "\n"), 1) .' | nc -q0 localhost 5556'
 endfunction "}}}
 
 augroup CopyToClipboard
@@ -231,10 +241,13 @@ autocmd BufEnter *.py :set noswapfile
 
 " Plugin Configs {{{
 
-" powerline
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
+if !has("nvim")
+    " https://github.com/powerline/powerline/issues/1287
+    " powerline
+    python3 from powerline.vim import setup as powerline_setup
+    python3 powerline_setup()
+    python3 del powerline_setup
+endif
 
 " fugitive
 set diffopt+=vertical

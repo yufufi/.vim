@@ -54,3 +54,8 @@ A new file with name `filename` in the current file's directory:
 ```
 e %:h/filename
 ``
+
+## Neovim
+mklink init.vim C:\Users\furkanfidan\.vim\init.vim
+python3 -m pip install --user --upgrade pynvim
+python3 -m pip install --user --upgrade neovim

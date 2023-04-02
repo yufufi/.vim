@@ -9,3 +9,7 @@ if exists("g:neovide")
     let g:neovide_cursor_animation_length=0.01
     let g:neovide_cursor_trail_size = 0.9
 endif
+
+set guifont=JetBrainsMonoMediumNerdFontCompleteM-Medium:h14
+
+

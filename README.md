@@ -56,6 +56,7 @@ e %:h/filename
 ``
 
 ## Neovim
-mklink init.vim C:\Users\furkanfidan\.vim\init.vim
+windows -> mklink init.vim C:\Users\furkanfidan\.vim\init.vim
+macos -> ln -s ~/.vim/init.vim ~/.config/nvim/init.vim
 python3 -m pip install --user --upgrade pynvim
 python3 -m pip install --user --upgrade neovim

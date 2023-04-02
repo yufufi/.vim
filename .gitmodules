@@ -48,14 +48,9 @@
 	url = https://github.com/vimwiki/vimwiki.git
 	branch = master
 	update = rebase
-[submodule "bundle/vim-markdown.git"]
-	path = bundle/vim-markdown.git
-	url = https://github.com/gabrielelana/vim-markdown.git
-	branch = master
-	update = rebase
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
-	url = https://github.com/plasticboy/vim-markdown.git
+	url = https://github.com/preservim/vim-markdown.git
 	branch = master
 	update = rebase
 [submodule "bundle/vim-colorschemes"]
@@ -183,3 +178,6 @@
 	url = https://github.com/junegunn/fzf
 	branch = master
 	update = rebase
+[submodule "bundle/copilot.vim"]
+	path = bundle/copilot.vim
+	url = https://github.com/github/copilot.vim.git

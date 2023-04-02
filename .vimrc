@@ -26,6 +26,7 @@ if has("gui_macvim")
     set undodir=~/.vim/tmp/und//,/tmp//
     set rtp+=~/.fzf
     set rtp+=/usr/local/opt/fzf
+    " set rtp+=$(brew --prefix)/opt/fzf -- for future 
     let g:scratch_persistence_file="~/.vim/tmp/scratch"
 elseif has("win32")
     set backupdir=C:\\temp
@@ -123,13 +124,15 @@ set wildmenu
 set wildmode=list:longest,full "enables a menu at the bottom of vim
 set lazyredraw
 set showmatch
-if has("gui_macvim")
-    set anti enc=utf-8
-    set guifont=SauceCodePowerline-Medium:h14
-    set guifont=JetBrainsMonoMediumNerdFontCompleteM-Medium:h14
-else
-    set guifont=SauceCodePowerline-Medium:h10
-    set guifont=SauceCodePro_NF:h12:cANSI:qDRAFT
+if has("gui_running")
+    if has("gui_macvim")
+        set anti enc=utf-8
+        set guifont=SauceCodePowerline-Medium:h14
+        set guifont=JetBrainsMonoMediumNerdFontCompleteM-Medium:h14
+    elseif has("gui_win32")
+        set guifont=SauceCodePowerline-Medium:h10
+        set guifont=SauceCodePro_NF:h12:cANSI:qDRAFT
+    endif
 endif
 :auto BufEnter * let &titlestring = expand($_BUILDBRANCH) ." " . expand("%:p")
 " }}}
@@ -176,9 +179,11 @@ nnoremap <leader>u :GundoToggle<CR>
 nnoremap <leader>eh :History<CR>
 nnoremap <leader>ef :Files<CR>
 nnoremap <leader>eb :Buffers<CR>
+nnoremap <leader>ew :Windows<CR>
 nnoremap <leader>egc :Commits<CR>
 nnoremap <leader>egf :GFiles<CR>
 nnoremap <leader>egs :GFiles?<CR>
+nnoremap <leader>ec :Rg<CR>
 nnoremap <leader>qq :qall<CR>
 
 set scrolloff=20 "always have 3 lines above and below cursor visible (while scrolling searching etc)
@@ -191,8 +196,8 @@ nnoremap <C-P> :bprev<CR>
 " Buffer management {{{
 "if has("gui_macvim") || has("win32")
     "nmap <C-S-tab> :bprevious<CR>
-nnoremap <C-tab> :bnext<CR>
-nnoremap <C-S-tab> :bprevious<CR>
+nnoremap <C-tab> :tabnext<CR>
+nnoremap <C-S-tab> :tabprevious<CR>
     "map <C-tab> :bnext<CR>
     "imap <C-S-tab> <Esc>:bprevious<CR>i
     "imap <C-tab> <Esc>:bnext<CR>i
@@ -269,7 +274,12 @@ map <Leader>vp :VimuxPromptCommand<CR>
 map <Leader>vi :VimuxInspectRunner<CR>
 " Zoom the tmux runner pane
 map <Leader>vz :VimuxZoomRunner<CR>
-let g:VimuxTmuxCommand = 'cmd'
+
+if has('win32') || has('win64')
+    let g:VimuxTmuxCommand = 'cmd'
+else
+    let g:VimuxTmuxCommand = 'tmux'
+endif
 
 " vimwiki-tasks
 let g:vimwiki_tasks_annotate_origin = 1
@@ -398,4 +408,4 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+let $FZF_DEFAULT_OPTS = '--ansi --bind ctrl-a:select-all'

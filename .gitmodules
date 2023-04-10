@@ -130,7 +130,7 @@
 	update = rebase
 [submodule "bundle/vim-obsession"]
 	path = bundle/vim-obsession
-	url = git://github.com/tpope/vim-obsession.git
+	url = https://github.com/tpope/vim-obsession.git
 	branch = master
 	update = rebase
 [submodule "bundle/vim-vinegar"]

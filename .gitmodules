@@ -1,13 +1,3 @@
-[submodule "bundle/bufexplorer"]
-	path = bundle/bufexplorer
-	url = https://github.com/jlanzarotta/bufexplorer.git
-	branch = master
-	update = rebase
-[submodule "gundo.vim"]
-	path = gundo.vim
-	url = https://github.com/sjl/gundo.vim.git
-	branch = master
-	update = rebase
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
@@ -26,21 +16,6 @@
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-	branch = master
-	update = rebase
-[submodule "bundle/PyInteractive"]
-	path = bundle/PyInteractive
-	url = https://github.com/vim-scripts/PyInteractive.git
-	branch = master
-	update = rebase
-[submodule "bundle/vim-plug"]
-	path = bundle/vim-plug
-	url = https://github.com/junegunn/vim-plug.git
-	branch = master
-	update = rebase
-[submodule "autoload/plug.vim"]
-	path = autoload/plug.vim
-	url = https://github.com/junegunn/vim-plug.git
 	branch = master
 	update = rebase
 [submodule "bundle/vim-markdown"]
@@ -121,16 +96,6 @@
 [submodule "bundle/vim-vinegar"]
 	path = bundle/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
-	branch = master
-	update = rebase
-[submodule "bundle/palenight.vim"]
-	path = bundle/palenight.vim
-	url = https://github.com/drewtempelmeyer/palenight.vim.git
-	branch = master
-	update = rebase
-[submodule "bundle/ayu-vim"]
-	path = bundle/ayu-vim
-	url = https://github.com/ayu-theme/ayu-vim.git
 	branch = master
 	update = rebase
 [submodule "bundle/vim-ps1"]

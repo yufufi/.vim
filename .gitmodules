@@ -43,11 +43,6 @@
 	url = https://github.com/junegunn/vim-plug.git
 	branch = master
 	update = rebase
-[submodule "bundle/vimwiki.git"]
-	path = bundle/vimwiki.git
-	url = https://github.com/vimwiki/vimwiki.git
-	branch = master
-	update = rebase
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
 	url = https://github.com/preservim/vim-markdown.git
@@ -73,11 +68,6 @@
 	url = https://github.com/kshenoy/vim-signature.git
 	branch = master
 	update = rebase
-[submodule "bundle/vimproc"]
-	path = bundle/vimproc
-	url = https://github.com/Shougo/vimproc.vim.git
-	branch = master
-	update = rebase
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
@@ -86,11 +76,6 @@
 [submodule "bundle/vim-easy-align"]
 	path = bundle/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align.git
-	branch = master
-	update = rebase
-[submodule "bundle/ale"]
-	path = bundle/ale
-	url = https://github.com/w0rp/ale.git
 	branch = master
 	update = rebase
 [submodule "bundle/scratch.vim"]
@@ -181,3 +166,6 @@
 [submodule "bundle/copilot.vim"]
 	path = bundle/copilot.vim
 	url = https://github.com/github/copilot.vim.git
+[submodule "bundle/Nvim-R"]
+	path = bundle/Nvim-R
+	url = https://github.com/jalvesaq/Nvim-R.git
